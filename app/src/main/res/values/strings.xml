@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CID</string>
+    <string name="mentorButton">View Mentorlist</string>
 </resources>
