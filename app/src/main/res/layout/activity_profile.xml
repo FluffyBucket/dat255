@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="user" type="se.chalmers.cid.models.User"/>
+    </data>
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="se.chalmers.cid.views.Profile">
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <ImageView
+                            android:layout_height="match_parent"
+                            app:srcCompat="@color/colorAccent"
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:adjustViewBounds="false"
+                            android:id="@+id/profilePic" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:inputType="textPersonName"
+                            android:ems="10"
+                            android:singleLine="true"
+                            android:selectAllOnFocus="false"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:padding="0dp"
+                            android:layout_margin="0dp"
+                            android:autoText="false"
+                            android:textSize="14sp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:textStyle="normal|bold"
+                            android:hint="19XX"
+                            android:id="@+id/age"
+                            android:text="@{user.age}" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:layout_height="match_parent"
+                                app:srcCompat="@android:color/holo_green_light"
+                                android:layout_weight="5"
+                                android:layout_width="match_parent"
+                                android:id="@+id/profileNationImg" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName"
+                                android:ems="10"
+                                android:layout_weight="1"
+                                android:hint="Name"
+                                android:paddingLeft="10dp"
+                                android:id="@+id/profileName"
+                                android:text="@{user.name}" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:layout_height="match_parent"
+                                app:srcCompat="@android:color/holo_orange_dark"
+                                android:layout_weight="5"
+                                android:layout_width="match_parent"
+                                android:id="@+id/contactWayImg" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName"
+                                android:ems="10"
+                                android:layout_weight="1"
+                                android:hint="Prefered way of contact"
+                                android:paddingLeft="10dp"
+                                android:id="@+id/prefContactWayText"
+                                android:text="@{user.prefContactWay}" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:hint="Biography"
+                    android:layout_weight="9.75"
+                    android:id="@+id/biographyText"
+                    android:text="@{user.biography}" />
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
