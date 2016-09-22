@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="user" type="se.chalmers.cid.models.User"/>
     </data>
     <android.support.design.widget.CoordinatorLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,12 +38,14 @@
                         android:layout_weight="3">
 
                         <ImageView
-                            android:layout_height="match_parent"
-                            app:srcCompat="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/user_default"
                             android:layout_weight="3"
-                            android:layout_width="match_parent"
-                            android:adjustViewBounds="false"
-                            android:id="@+id/profilePic" />
+                            android:layout_width="wrap_content"
+                            android:id="@+id/profilePic"
+                            android:cropToPadding="true"
+                            android:scaleType="fitCenter"
+                            android:adjustViewBounds="true" />
 
                         <EditText
                             android:layout_width="wrap_content"
@@ -80,14 +82,14 @@
 
                             <ImageView
                                 android:layout_height="match_parent"
-                                app:srcCompat="@android:color/holo_green_light"
+                                app:srcCompat="@drawable/ic_default_flag"
                                 android:layout_weight="5"
                                 android:layout_width="match_parent"
                                 android:id="@+id/profileNationImg" />
 
                             <EditText
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:inputType="textPersonName"
                                 android:ems="10"
                                 android:layout_weight="1"
@@ -105,14 +107,14 @@
 
                             <ImageView
                                 android:layout_height="match_parent"
-                                app:srcCompat="@android:color/holo_orange_dark"
+                                app:srcCompat="@drawable/ic_phone"
                                 android:layout_weight="5"
                                 android:layout_width="match_parent"
                                 android:id="@+id/contactWayImg" />
 
                             <EditText
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:inputType="textPersonName"
                                 android:ems="10"
                                 android:layout_weight="1"
