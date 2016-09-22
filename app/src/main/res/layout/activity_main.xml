@@ -18,5 +18,7 @@
 		android:id="@+id/gotoMentor"
 		tools:text="View MentorList"
 		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true" />
+		android:layout_centerHorizontal="true"
+		android:onClick="changeViewToMentors" />
+
 </RelativeLayout>
