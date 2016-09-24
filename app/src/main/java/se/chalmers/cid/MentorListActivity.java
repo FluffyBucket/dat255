@@ -8,7 +8,13 @@ import android.widget.ListView;
 
 public class MentorListActivity extends AppCompatActivity {
 
-    String[] randomData = {"Fredrik", "Per-Einar", "Fritjolf", "Rudolf", "Emilie", "Håkon", "Snoop Dogg"};
+    String[] randomData = {"Fredrik \n 23224244", "Per-Einar \n 523224244", "Fritjolf \n 3224244",
+            "Reidar Ramb \n +48 553244", "Per-Einar \n 07352222", "Fritjolf \n +523224244",
+            "Frank Sinatra \n Snapchat: frankyboy1337", "Gandalf \n gandalfdagray@hotmail.se",
+            "Rudolf \n 554244", "Emilie \n +2349995", "Håkon \n Haakon13@mail.com",
+            "Liam \n 073528838, txt me (;", "Snoop Dogg \n Snoop@dogg.com"};
+    //for more advanced data look into "simple cursor adapter"
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,10 +22,10 @@ public class MentorListActivity extends AppCompatActivity {
         setContentView(R.layout.main_list);
 
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listitem, randomData);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.activity_listitem, randomData); // feeds random data looking like activity_listitem
 
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+        ListView listView = (ListView) findViewById(R.id.listView); //the list view with id "listView"
+        listView.setAdapter(adapter);       //adapter feeds it
 
 
 
