@@ -1,7 +1,9 @@
-package se.chalmers.cid;
+package se.chalmers.cid.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import se.chalmers.cid.R;
 
 public class MainActivity extends AppCompatActivity {
 
