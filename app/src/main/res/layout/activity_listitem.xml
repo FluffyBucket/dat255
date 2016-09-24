@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--  This is the XML-design file for a single item in the "main_list" list -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:text="TextView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/TextView"
-        android:layout_weight="0.11"
-        android:textSize="14sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="viewStart"
-        android:textAllCaps="true">
+          android:text="@string/namn_namnesen"
+          android:id="@+id/TextView"
+          android:layout_weight="0.11"
+          android:textSize="18sp"
+          android:textStyle="normal|bold"
+          android:textAlignment="viewStart"
+          android:textAllCaps="false"
+          android:layout_width="fill_parent"
+          android:layout_height="50dp">
 </TextView>
 
 
