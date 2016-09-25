@@ -1,4 +1,4 @@
 <resources>
 	<string name="app_name">CID</string>
-	<string name="facebook_app_id">160552804393678</string>
+	<string name="facebook_application_id" translatable="false">160552804393678</string>
 </resources>
