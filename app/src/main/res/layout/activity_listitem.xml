@@ -2,16 +2,42 @@
 
 <!--  This is the XML-design file for a single item in the "main_list" list -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:text="@string/namn_namnesen"
-          android:id="@+id/TextView"
-          android:layout_weight="0.11"
-          android:textSize="18sp"
-          android:textStyle="normal|bold"
-          android:textAlignment="viewStart"
-          android:textAllCaps="false"
-          android:layout_width="fill_parent"
-          android:layout_height="50dp">
-</TextView>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:padding="3dip" >
+
+        <ImageView
+            android:layout_width="87dp"
+            android:layout_height="65dp"
+            app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
+            android:id="@+id/imageView2"
+            android:scaleType="fitStart"/>
+    </LinearLayout>
 
 
+    <TextView
+        android:text="@string/namn_namnesen"
+        android:id="@+id/TextView"
+        android:layout_weight="0.11"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/thumbnail">
+    </TextView>
+
+
+</RelativeLayout>
