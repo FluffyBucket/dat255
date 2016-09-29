@@ -8,6 +8,27 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="se.chalmers.cid.activities.FirstTimeSetupInterests">
+    tools:context="se.chalmers.cid.activities.FirstTimeSetupInterestsActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/interestList"
+            android:stretchMode="columnWidth"
+            android:numColumns="auto_fit"
+            android:columnWidth="64dp" />
+
+        <Button
+            android:text="Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonNext"
+            android:onClick="nextActivity" />
+
+    </LinearLayout>
 
 </RelativeLayout>

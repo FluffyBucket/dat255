@@ -10,4 +10,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="se.chalmers.cid.activities.FirstTimeSetupLanguagesActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/languageList"
+            android:stretchMode="columnWidth"
+            android:numColumns="auto_fit"
+            android:columnWidth="64dp" />
+
+        <Button
+            android:text="Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonNext"
+            android:onClick="nextActivity" />
+
+    </LinearLayout>
+
 </RelativeLayout>

@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		startActivity(new Intent(this,FirstTimeSetupRoleActivity.class));
+/*
 		mAuth = FirebaseAuth.getInstance();
 		mAuthListener = new FirebaseAuth.AuthStateListener() {
 			@Override
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 				}
 			}
 		};
-
+*/
 		// Temporary sign out button for testing purposes
 		Button signOutButton = (Button) findViewById(R.id.button_sign_out);
 		signOutButton.setOnClickListener(new View.OnClickListener() {

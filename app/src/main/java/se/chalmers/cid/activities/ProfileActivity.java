@@ -1,5 +1,6 @@
 package se.chalmers.cid.activities;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,13 +20,14 @@ import se.chalmers.cid.databinding.ActivityProfileBinding;
 import se.chalmers.cid.models.User;
 
 public class ProfileActivity extends AppCompatActivity {
-
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ActivityProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
-        User user = new User("Kebabmannen","1995","0730465775","AbraKEBABra, the lover of kebabs <3 with no abs!");
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(new InterestAdapter(this));

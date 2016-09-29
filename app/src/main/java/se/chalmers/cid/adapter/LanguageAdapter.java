@@ -16,7 +16,7 @@ import se.chalmers.cid.R;
 public class LanguageAdapter extends BaseAdapter
 {
     private Context mContext;
-    private Integer[] interests = {
+    private Integer[] languages = {
             R.drawable.ic_apache,
             R.drawable.ic_phone,
             R.drawable.ic_default_flag,
@@ -43,7 +43,7 @@ public class LanguageAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return interests.length;
+        return languages.length;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class LanguageAdapter extends BaseAdapter
         } else {
             img = (ImageView) convertView;
         }
-        img.setImageResource(interests[position]);
+        img.setImageResource(languages[position]);
         return img;
     }
 }
