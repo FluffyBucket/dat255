@@ -1,6 +1,7 @@
 package se.chalmers.cid.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by valentin & mårlind on 22/09/2016.
@@ -11,16 +12,11 @@ public class User implements Serializable {
     private String age;
     private String prefContactWay;
     private String biography;
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
     private int role;
+    private List<Integer> interests;
+    private List<Integer> languages;
+
+
 
     public  User(){
         this.name = "";
@@ -68,5 +64,29 @@ public class User implements Serializable {
 
     public String getBiography() {
         return biography;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public List<Integer> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<Integer> interests) {
+        this.interests = interests;
+    }
+
+    public List<Integer> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Integer> languages) {
+        this.languages = languages;
     }
 }
