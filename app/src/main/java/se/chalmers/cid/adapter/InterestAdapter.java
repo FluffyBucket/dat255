@@ -7,7 +7,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 import se.chalmers.cid.R;
+import se.chalmers.cid.models.Interest;
+import se.chalmers.cid.constants.interestsData;
 
 /**
  * Created by valentin & mårlind on 22/09/2016.
@@ -16,26 +20,7 @@ import se.chalmers.cid.R;
 public class InterestAdapter extends BaseAdapter
 {
     private Context mContext;
-    private Integer[] interests = {
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag
-    };
+    private ArrayList<Interest> interests = interestsData.getData();
 
     public InterestAdapter(Context c){
         mContext = c;
@@ -43,7 +28,7 @@ public class InterestAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return interests.length;
+        return interests.size();
     }
 
     @Override
@@ -67,7 +52,7 @@ public class InterestAdapter extends BaseAdapter
         } else {
             img = (ImageView) convertView;
         }
-        img.setImageResource(interests[position]);
+        img.setImageResource(interests.get(position).getImage());
         return img;
     }
 }
