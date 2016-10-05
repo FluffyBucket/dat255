@@ -68,6 +68,7 @@ public class LanguageAdapter extends BaseAdapter
             img = (ImageView) convertView;
         }
         img.setImageResource(languages[position]);
+        img.setImageAlpha(70);
         return img;
     }
 }
