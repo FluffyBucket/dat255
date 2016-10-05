@@ -8,7 +8,7 @@ import se.chalmers.cid.models.Interest;
 /**
  * Created by MicroBucket on 2016-10-04.
  */
-public class interestsData {
+public class InterestsData {
 
     private static final ArrayList<Interest> data = generate();
 

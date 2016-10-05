@@ -11,7 +11,7 @@ import se.chalmers.cid.models.Language;
 /**
  * Created by MicroBucket on 2016-10-04.
  */
-public class languagesData {
+public class LanguagesData {
 
     public static final ArrayList<Language> data = generate();
 
