@@ -129,6 +129,7 @@ public class InterestAdapter extends BaseAdapter
             img = (ImageView) convertView;
         }
         img.setImageResource(interests.get(position).getImage());
+        img.setImageAlpha(70);
         return img;
     }
 }
