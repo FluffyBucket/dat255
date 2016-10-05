@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+
+		if (!persistenceEnabled) {
+			FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+			persistenceEnabled = true;
+		}
 
 		mAuth = FirebaseAuth.getInstance();
 		mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -66,14 +70,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		};
 
-		// Temporary sign out button for testing purposes
-		/*Button signOutButton = (Button) findViewById(R.id.button_sign_out);
-		signOutButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				AuthUI.getInstance().signOut(MainActivity.this);
-			}
-		});*/
 	}
 
 	@Override
