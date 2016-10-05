@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
 						public void onDataChange(DataSnapshot dataSnapshot) {
 							if (dataSnapshot.exists()) {
 								// Show profile/list activity
+								startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 							} else {
 								// Show registration
+								startActivity(new Intent(MainActivity.this,FirstTimeSetupRoleActivity.class));
 							}
 
 						}
