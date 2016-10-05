@@ -8,7 +8,7 @@ import se.chalmers.cid.models.Interest;
 /**
  * Created by Fredrik on 2016-10-04.
  */
-public class InterestsData {
+public class interestsData {
 
     private static final ArrayList<Interest> data = generate();
 

@@ -11,7 +11,7 @@ import se.chalmers.cid.models.Language;
 /**
  * Created by Fredrik on 2016-10-04.
  */
-public class LanguagesData {
+public class languagesData {
 
     public static final ArrayList<Language> data = generate();
 

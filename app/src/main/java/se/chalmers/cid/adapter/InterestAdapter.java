@@ -9,8 +9,9 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import se.chalmers.cid.R;
 import se.chalmers.cid.models.Interest;
-import se.chalmers.cid.constants.InterestsData;
+import se.chalmers.cid.constants.interestsData;
 
 /**
  * Created by valentin & mårlind on 22/09/2016.
@@ -19,7 +20,7 @@ import se.chalmers.cid.constants.InterestsData;
 public class InterestAdapter extends BaseAdapter
 {
     private Context mContext;
-    private ArrayList<Interest> interests = InterestsData.getData();
+    private ArrayList<Interest> interests = interestsData.getData();
 
     public InterestAdapter(Context c){
         mContext = c;
