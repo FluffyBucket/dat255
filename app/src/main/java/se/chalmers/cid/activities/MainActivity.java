@@ -15,8 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import se.chalmers.cid.R;
-
 public class MainActivity extends AppCompatActivity {
 
 	private static final int RC_SIGN_IN = 9001;
