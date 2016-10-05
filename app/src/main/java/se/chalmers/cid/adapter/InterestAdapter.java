@@ -55,17 +55,6 @@ public class InterestAdapter extends BaseAdapter
     private ArrayMap<Integer,Interest> getInterests(){
 
         ArrayMap<Integer,Interest> list = new ArrayMap<>();
-        /*
-        //if(!localUser.getName().equals(profileUser.getName())){
-            for (Integer i:localUser.getInterests()
-                 ) {
-                if(profileUser.getInterests().contains(i))
-                {
-                    list.put(i,interestsData.getData().get(i));
-                }
-            }
-        //}
-        */
 
         if (mContext.getClass() == FirstTimeSetupInterestsActivity.class)
         {
