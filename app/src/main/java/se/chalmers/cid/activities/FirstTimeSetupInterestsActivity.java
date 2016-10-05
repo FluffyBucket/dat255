@@ -10,6 +10,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import se.chalmers.cid.R;
 import se.chalmers.cid.adapter.InterestAdapter;
 import se.chalmers.cid.adapter.LanguageAdapter;
@@ -17,6 +25,7 @@ import se.chalmers.cid.models.User;
 
 public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
     private User user;
+    private List<Integer> userInterests = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +38,12 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ImageView img = (ImageView) view;
-
-                if(img.getImageAlpha() == 70){
-                    img.setImageAlpha(255);
-                } else {
+                if (userInterests.contains(position)) {
+                    userInterests.remove((Integer) position);
                     img.setImageAlpha(70);
+                } else {
+                    userInterests.add(position);
+                    img.setImageAlpha(255);
                 }
                 //view = img;
 
@@ -46,7 +56,11 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
 
     public void nextActivity(View v){
         Intent intent = new Intent(this,ProfileActivity.class);
+        user.setInterests(userInterests);
         intent.putExtra("user",user);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        usersRef.child(firebaseUser.getUid()).setValue(user);
         startActivity(intent);
     }
 
