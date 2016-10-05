@@ -1,21 +1,21 @@
-package se.chalmers.cid.activities;
+		package se.chalmers.cid.activities;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+		import android.content.Intent;
+		import android.os.Bundle;
+		import android.support.annotation.NonNull;
+		import android.support.v7.app.AppCompatActivity;
+		import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+		import com.firebase.ui.auth.AuthUI;
+		import com.google.firebase.auth.FirebaseAuth;
+		import com.google.firebase.auth.FirebaseUser;
+		import com.google.firebase.database.DataSnapshot;
+		import com.google.firebase.database.DatabaseError;
+		import com.google.firebase.database.DatabaseReference;
+		import com.google.firebase.database.FirebaseDatabase;
+		import com.google.firebase.database.ValueEventListener;
 
-import se.chalmers.cid.R;
+		import se.chalmers.cid.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
 						public void onDataChange(DataSnapshot dataSnapshot) {
 							if (dataSnapshot.exists()) {
 								// Show profile/list activity
+								startActivity(new Intent(MainActivity.this,ProfileActivity.class));
 							} else {
 								// Show registration
+								startActivity(new Intent(MainActivity.this,FirstTimeSetupRoleActivity.class));
 							}
 
 						}
@@ -56,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
 					});
 				} else {
 					Intent signInIntent = AuthUI.getInstance()
-						.createSignInIntentBuilder()
-						.setProviders(
-							AuthUI.FACEBOOK_PROVIDER,
-							AuthUI.GOOGLE_PROVIDER)
-						.build();
+							.createSignInIntentBuilder()
+							.setProviders(
+									AuthUI.FACEBOOK_PROVIDER,
+									AuthUI.GOOGLE_PROVIDER)
+							.build();
 					startActivityForResult(signInIntent, RC_SIGN_IN);
 				}
 			}
