@@ -1,17 +1,33 @@
 package se.chalmers.cid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import se.chalmers.cid.R;
+import se.chalmers.cid.activities.FirstTimeSetupRoleActivity;
+import se.chalmers.cid.activities.MainActivity;
+import se.chalmers.cid.activities.ProfileActivity;
 import se.chalmers.cid.models.Interest;
 import se.chalmers.cid.constants.interestsData;
+import se.chalmers.cid.models.User;
 
 /**
  * Created by valentin & mårlind on 22/09/2016.
@@ -20,10 +36,70 @@ import se.chalmers.cid.constants.interestsData;
 public class InterestAdapter extends BaseAdapter
 {
     private Context mContext;
-    private ArrayList<Interest> interests = interestsData.getData();
+    private User profileUser;
+    private User localUser;
 
-    public InterestAdapter(Context c){
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private ArrayMap<Integer,Interest> interests;
+
+    public InterestAdapter(Context c,User user){
         mContext = c;
+        this.profileUser = user;
+        getLocalUser();
+        interests = getInterests();
+    }
+
+    private void getLocalUser(){
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                    usersRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                // Show profile/list activity
+                                localUser = dataSnapshot.getValue(User.class);
+                            } else {
+                                // Show registration
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                } else {
+
+                }
+            }
+        };
+    }
+
+    private ArrayMap<Integer,Interest> getInterests(){
+
+        ArrayMap<Integer,Interest> list = new ArrayMap<>();
+
+        //if(!localUser.getName().equals(profileUser.getName())){
+            for (Integer i:localUser.getInterests()
+                 ) {
+                if(profileUser.getInterests().contains(i))
+                {
+                    list.put(i,interestsData.getData().get(i));
+                }
+            }
+        //}
+
+
+        return list;
     }
 
     @Override
@@ -53,6 +129,7 @@ public class InterestAdapter extends BaseAdapter
             img = (ImageView) convertView;
         }
         img.setImageResource(interests.get(position).getImage());
+        img.setImageAlpha(70);
         return img;
     }
 }
