@@ -12,14 +12,19 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import se.chalmers.cid.R;
 import se.chalmers.cid.adapter.InterestAdapter;
 import se.chalmers.cid.adapter.LanguageAdapter;
+import se.chalmers.cid.models.Language;
 import se.chalmers.cid.models.User;
 
 public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
 
     private User user;
+    private List<Integer> userLang = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +38,13 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ImageView img = (ImageView) view;
 
-                if(img.getImageAlpha() == 70){
-                    img.setImageAlpha(255);
-                } else {
+                if (userLang.contains(position)) {
+                    userLang.remove((Integer) position);
                     img.setImageAlpha(70);
-                }
-                //view = img;
+                } else {
+                    userLang.add(position);
+                    img.setImageAlpha(255);
+                }                //view = img;
 
                 //Toast.makeText(MainActivity.this, "Kebab" + img.getImageAlpha(), Toast.LENGTH_SHORT).show();
             }
@@ -50,6 +56,7 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
     public void nextActivity(View v){
 
         Intent intent = new Intent(this,FirstTimeSetupInterestsActivity.class);
+        user.setLanguages(userLang);
         intent.putExtra("user",user);
         startActivity(intent);
     }
