@@ -29,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
+
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(new InterestAdapter(this,user));
         interestGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

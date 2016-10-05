@@ -15,7 +15,9 @@
 		import com.google.firebase.database.FirebaseDatabase;
 		import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+		import se.chalmers.cid.models.User;
+
+		public class MainActivity extends AppCompatActivity {
 
 	private static final int RC_SIGN_IN = 9001;
 
@@ -45,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 						public void onDataChange(DataSnapshot dataSnapshot) {
 							if (dataSnapshot.exists()) {
 								// Show profile/list activity
-								startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+								Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+								intent.putExtra("user",dataSnapshot.getValue(User.class));
+								startActivity(intent);
 							} else {
 								// Show registration
 								startActivity(new Intent(MainActivity.this,FirstTimeSetupRoleActivity.class));
