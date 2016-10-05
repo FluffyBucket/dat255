@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import se.chalmers.cid.R;
+import se.chalmers.cid.activities.FirstTimeSetupInterestsActivity;
 import se.chalmers.cid.activities.FirstTimeSetupRoleActivity;
 import se.chalmers.cid.activities.MainActivity;
 import se.chalmers.cid.activities.ProfileActivity;
@@ -47,47 +48,14 @@ public class InterestAdapter extends BaseAdapter
     public InterestAdapter(Context c,User user){
         mContext = c;
         this.profileUser = user;
-        getLocalUser();
+
         interests = getInterests();
-    }
-
-    private void getLocalUser(){
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-                    usersRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                // Show profile/list activity
-                                localUser = dataSnapshot.getValue(User.class);
-                            } else {
-                                // Show registration
-
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                } else {
-
-                }
-            }
-        };
     }
 
     private ArrayMap<Integer,Interest> getInterests(){
 
         ArrayMap<Integer,Interest> list = new ArrayMap<>();
-
+        /*
         //if(!localUser.getName().equals(profileUser.getName())){
             for (Integer i:localUser.getInterests()
                  ) {
@@ -97,7 +65,12 @@ public class InterestAdapter extends BaseAdapter
                 }
             }
         //}
+        */
 
+        if (mContext.getClass() == FirstTimeSetupInterestsActivity.class)
+        {
+            list = interestsData.getData();
+        }
 
         return list;
     }
