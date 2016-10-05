@@ -33,7 +33,7 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
-        interestGrid.setAdapter(new InterestAdapter(this));
+        interestGrid.setAdapter(new InterestAdapter(this, user));
         interestGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

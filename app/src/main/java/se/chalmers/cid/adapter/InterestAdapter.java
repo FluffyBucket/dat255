@@ -88,15 +88,14 @@ public class InterestAdapter extends BaseAdapter
 
         ArrayMap<Integer,Interest> list = new ArrayMap<>();
 
-        //if(!localUser.getName().equals(profileUser.getName())){
-            for (Integer i:localUser.getInterests()
-                 ) {
+        if(!localUser.getName().equals(profileUser.getName())){
+            for (Integer i:localUser.getInterests()) {
                 if(profileUser.getInterests().contains(i))
                 {
                     list.put(i,interestsData.getData().get(i));
                 }
             }
-        //}
+        }
 
 
         return list;
