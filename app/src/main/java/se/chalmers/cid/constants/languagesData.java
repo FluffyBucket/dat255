@@ -9,7 +9,7 @@ import se.chalmers.cid.R;
 import se.chalmers.cid.models.Language;
 
 /**
- * Created by MicroBucket on 2016-10-04.
+ * Created by Fredrik on 2016-10-04.
  */
 public class LanguagesData {
 
