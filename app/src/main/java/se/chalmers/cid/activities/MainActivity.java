@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,11 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
 	private FirebaseAuth mAuth;
 	private FirebaseAuth.AuthStateListener mAuthListener;
-	/**
-	 * ATTENTION: This was auto-generated to implement the App Indexing API.
-	 * See https://g.co/AppIndexing/AndroidStudio for more information.
-	 */
-	private GoogleApiClient client;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 						}
 
+
 						@Override
 						public void onCancelled(DatabaseError databaseError) {
 							Toast.makeText(MainActivity.this, "Failed to load users.", Toast.LENGTH_SHORT).show();
@@ -84,24 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	protected void onStart() {
-		super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
-// See https://g.co/AppIndexing/AndroidStudio for more information.
-		client.connect();
+		super.onStart();
 		mAuth.addAuthStateListener(mAuthListener);
-		// ATTENTION: This was auto-generated to implement the App Indexing API.
-		// See https://g.co/AppIndexing/AndroidStudio for more information.
-		AppIndex.AppIndexApi.start(client, getIndexApiAction());
 	}
 
 	@Override
 	protected void onStop() {
-		super.onStop();// ATTENTION: This was auto-generated to implement the App Indexing API.
-// See https://g.co/AppIndexing/AndroidStudio for more information.
-		AppIndex.AppIndexApi.end(client, getIndexApiAction());
+		super.onStop();
 		mAuth.removeAuthStateListener(mAuthListener);
-		// ATTENTION: This was auto-generated to implement the App Indexing API.
-		// See https://g.co/AppIndexing/AndroidStudio for more information.
-		client.disconnect();
 	}
 
 	@Override
@@ -111,4 +96,5 @@ public class MainActivity extends AppCompatActivity {
 			Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 		}
 	}
+
 }

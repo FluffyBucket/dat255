@@ -54,14 +54,19 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
         setDynamicHeight(interestGrid);
     }
 
-    public void nextActivity(View v){
-        Intent intent = new Intent(this,ProfileActivity.class);
-        user.setInterests(userInterests);
-        intent.putExtra("user",user);
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-        usersRef.child(firebaseUser.getUid()).setValue(user);
-        startActivity(intent);
+    public void nextActivity(View v) {
+        if (user.getRole() == 1) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            user.setInterests(userInterests);
+            intent.putExtra("user", user);
+            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+            usersRef.child(firebaseUser.getUid()).setValue(user);
+            startActivity(intent);
+        } else {
+            Intent intentNewArrived = new Intent(this, MentorListActivity.class);
+            startActivity(intentNewArrived);
+        }
     }
 
     private void setDynamicHeight(GridView gridView) {
