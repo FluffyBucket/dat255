@@ -1,6 +1,7 @@
 package se.chalmers.cid.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import se.chalmers.cid.MentorListActivity;
 import se.chalmers.cid.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
 	private FirebaseAuth mAuth;
 	private FirebaseAuth.AuthStateListener mAuthListener;
+	/**
+	 * ATTENTION: This was auto-generated to implement the App Indexing API.
+	 * See https://g.co/AppIndexing/AndroidStudio for more information.
+	 */
+	private GoogleApiClient client;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +46,18 @@ public class MainActivity extends AppCompatActivity {
 				if (user != null) {
 					// Load the next activity after the user is signed in here...
 
+
 					// Temporary textView that shows the signed in user's email
 					TextView textView = (TextView) findViewById(R.id.text_view_username);
 					textView.setText(String.format("%s signed in.", user.getEmail()));
 				} else {
 					Intent signInIntent = AuthUI.getInstance()
-						.createSignInIntentBuilder()
-						.setProviders(
-							AuthUI.FACEBOOK_PROVIDER,
-							AuthUI.GOOGLE_PROVIDER
-						)
-						.build();
+							.createSignInIntentBuilder()
+							.setProviders(
+									AuthUI.FACEBOOK_PROVIDER,
+									AuthUI.GOOGLE_PROVIDER
+							)
+							.build();
 					startActivityForResult(signInIntent, RC_SIGN_IN);
 				}
 			}
@@ -59,18 +71,31 @@ public class MainActivity extends AppCompatActivity {
 				AuthUI.getInstance().signOut(MainActivity.this);
 			}
 		});
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
 	@Override
 	protected void onStart() {
-		super.onStart();
+		super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client.connect();
 		mAuth.addAuthStateListener(mAuthListener);
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		AppIndex.AppIndexApi.start(client, getIndexApiAction());
 	}
 
 	@Override
 	protected void onStop() {
-		super.onStop();
+		super.onStop();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+		AppIndex.AppIndexApi.end(client, getIndexApiAction());
 		mAuth.removeAuthStateListener(mAuthListener);
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client.disconnect();
 	}
 
 	@Override
@@ -80,5 +105,4 @@ public class MainActivity extends AppCompatActivity {
 			Toast.makeText(MainActivity.this, "Authentication failed, please try again.", Toast.LENGTH_SHORT).show();
 		}
 	}
-
 }
