@@ -25,6 +25,11 @@
 
 	private FirebaseAuth mAuth;
 	private FirebaseAuth.AuthStateListener mAuthListener;
+	/**
+	 * ATTENTION: This was auto-generated to implement the App Indexing API.
+	 * See https://g.co/AppIndexing/AndroidStudio for more information.
+	 */
+	private GoogleApiClient client;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,14 +83,24 @@
 
 	@Override
 	protected void onStart() {
-		super.onStart();
+		super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client.connect();
 		mAuth.addAuthStateListener(mAuthListener);
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		AppIndex.AppIndexApi.start(client, getIndexApiAction());
 	}
 
 	@Override
 	protected void onStop() {
-		super.onStop();
+		super.onStop();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+		AppIndex.AppIndexApi.end(client, getIndexApiAction());
 		mAuth.removeAuthStateListener(mAuthListener);
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client.disconnect();
 	}
 
 	@Override
@@ -95,5 +110,4 @@
 			Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 		}
 	}
-
 }

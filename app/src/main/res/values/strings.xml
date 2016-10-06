@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">CID</string>
     <string name="facebook_application_id" translatable="false">160552804393678</string>
     <string name="title_activity_profile">Profile</string>
@@ -6,4 +7,9 @@
     <string name="title_activity_first_time_setup_role">FirstTimeSetupRole</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+=======
+	<string name="app_name">CID</string>
+	<string name="facebook_application_id" translatable="false">160552804393678</string>
+    <string name="namn_namnesen">Namn Namnesen</string>
+>>>>>>> IntegrateLIstViewFunctionallity
 </resources>
