@@ -1,10 +1,12 @@
-package se.chalmers.cid;
+package se.chalmers.cid.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import se.chalmers.cid.R;
 
 public class MentorListActivity extends AppCompatActivity {
 
