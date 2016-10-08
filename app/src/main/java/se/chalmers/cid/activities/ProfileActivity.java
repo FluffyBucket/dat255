@@ -72,6 +72,7 @@ public class ProfileActivity extends AppCompatActivity{
             }
         });
         setDynamicHeight(interestGrid);
+
     }
 
     private void setDynamicHeight(GridView gridView) {
