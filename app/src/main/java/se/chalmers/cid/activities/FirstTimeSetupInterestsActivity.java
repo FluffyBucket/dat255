@@ -64,8 +64,8 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
             usersRef.child(firebaseUser.getUid()).setValue(user);
             startActivity(intent);
         } else {
-            Intent intentNewArrived = new Intent(this, MentorListActivity.class);
-            startActivity(intentNewArrived);
+            Intent intent = new Intent(this, MentorListActivity.class);
+            startActivity(intent);
         }
     }
 

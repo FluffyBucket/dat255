@@ -26,7 +26,10 @@
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".activities.FirstTimeSetupBasicsActivity" />
         <activity android:name=".activities.FirstTimeSetupLanguagesActivity" />
-        <activity android:name=".activities.FirstTimeSetupInterestsActivity"></activity>
+        <activity android:name=".activities.FirstTimeSetupInterestsActivity"/>
+        <activity android:name=".activities.MentorListActivity">
+        </activity>
+
     </application>
 
 </manifest>
