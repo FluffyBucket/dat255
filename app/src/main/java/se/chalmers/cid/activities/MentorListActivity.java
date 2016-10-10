@@ -97,8 +97,6 @@ public class MentorListActivity extends AppCompatActivity {
                         mentorNames.add(entry.getValue().getName() + " \n " + entry.getValue().getPrefContactWay());
                         i++;
                         Log.d("hej", "ÄR INNE I LOOPEN");
-                        Log.d("hej", "ÄR INNE I LOOPEN");
-                        Log.d("hej", "ÄR INNE I LOOPEN");
                     }
                 }
             }
