@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 for (Map.Entry<String, User> entry : users.entrySet()) {
-                    Log.d("hej", "UserID : " + entry.getKey() + " Count : " + entry.getValue());
-                    Log.d("hej", "UserID : " + " Count : " + entry.getValue().getRole());
+                 //   Log.d("hej", "UserID : " + entry.getKey() + " Count : " + entry.getValue());
+                  //  Log.d("hej", "UserID : " + " Count : " + entry.getValue().getRole());
                     if (userId == entry.getKey()) {
                         userRole = entry.getValue().getRole();
                     }

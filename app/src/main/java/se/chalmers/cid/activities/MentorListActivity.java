@@ -28,6 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 
@@ -47,18 +50,22 @@ public class MentorListActivity extends AppCompatActivity {
     private ListView mListView;
     private String userId;
     private User user;
-    private List<User> users;
-    private User[] usersArray;
+    private ArrayList<User> mentors;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private HashMap<String, User> users;
+    private ArrayList<String> mentorNames;
 
-    private HashMap<String, User> users2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_list);
+        mentors = new ArrayList<User>();
+        mentorNames = new ArrayList<String>();
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -70,6 +77,45 @@ public class MentorListActivity extends AppCompatActivity {
             }
         };
 
+        Log.d("true/false", "framme1");
+        ValueEventListener mentorListener2 = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                GenericTypeIndicator<HashMap<String, User>> t = new GenericTypeIndicator<HashMap<String, User>>() {
+                };
+                users = dataSnapshot.getValue(t);
+                Log.d("true/false", "framme2");
+                int i = 0;
+                for (Map.Entry<String, User> entry : users.entrySet()) {
+                //    Log.d("hej", "UserID : " + entry.getKey() + " Count : " + entry.getValue());
+                  //  Log.d("hej", "UserID : " + " Count : " + entry.getValue().getRole());
+                    Log.d("true/false", "framme3");
+                    if (1 == entry.getValue().getRole()) {
+                        Log.d("true/false", "framme4");
+                        mentors.add(entry.getValue());
+                        mentorNames.add(entry.getValue().getName() + " \n " + entry.getValue().getPrefContactWay());
+                        i++;
+                        Log.d("hej", "ÄR INNE I LOOPEN");
+                        Log.d("hej", "ÄR INNE I LOOPEN");
+                        Log.d("hej", "ÄR INNE I LOOPEN");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("hej", "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+
+
+        mDatabase.addValueEventListener(mentorListener2);
+
+        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.activity_listitem, mentorNames); // feeds random data looking like activity_listitem
+
+        ListView listView = (ListView) findViewById(R.id.listView); //the list view with id "listView"
+        listView.setAdapter(adapter);       //adapter feeds it
 
     }
 
