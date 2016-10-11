@@ -30,8 +30,7 @@ import se.chalmers.cid.models.User;
 
 public class ProfileActivity extends AppCompatActivity{
     private User user;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity{
         user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
 
-        mAuth = FirebaseAuth.getInstance();
+
 
 
         GridView interestGrid = (GridView) findViewById(R.id.interestList);

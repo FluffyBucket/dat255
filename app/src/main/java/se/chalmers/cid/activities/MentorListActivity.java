@@ -132,10 +132,15 @@ public class MentorListActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
-//Todo: Fix logout. Crashes when you signout and then start mainactivity
-            //mAuth.signOut();
-            Intent intent = new Intent(MentorListActivity.this, MainActivity.class);
-            startActivity(intent);
+            AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            startActivity(new Intent(MentorListActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    });
         }
 
         return super.onOptionsItemSelected(item);

@@ -7,6 +7,7 @@
     <string name="title_activity_first_time_setup_basics">Setup basics</string>
     <string name="title_activity_first_time_setup_interest">Setup interests</string>
     <string name="title_activity_first_time_setup_language">Setup languages</string>
+    <string name="title_activity_first_time_setup_mentorlist">Mentors</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
