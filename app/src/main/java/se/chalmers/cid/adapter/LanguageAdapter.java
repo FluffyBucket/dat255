@@ -1,6 +1,8 @@
 package se.chalmers.cid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +10,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import se.chalmers.cid.R;
+import se.chalmers.cid.constants.languagesData;
+import se.chalmers.cid.models.Language;
 
 /**
  * Created by valentin & mårlind on 22/09/2016.
@@ -16,16 +20,7 @@ import se.chalmers.cid.R;
 public class LanguageAdapter extends BaseAdapter
 {
     private Context mContext;
-    private Integer[] languages = {
-        R.drawable.ic_language_swedish,
-        R.drawable.ic_language_english,
-        R.drawable.ic_language_spanish,
-        R.drawable.ic_language_german,
-        R.drawable.ic_language_afghanistan,
-        R.drawable.ic_language_france,
-        R.drawable.ic_language_syria,
-        R.drawable.ic_language_iran
-    };
+    private ArrayMap<Integer,Language> languages = languagesData.getData();
 
     public LanguageAdapter(Context c){
         mContext = c;
@@ -33,7 +28,7 @@ public class LanguageAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return languages.length;
+        return languages.size();
     }
 
     @Override
@@ -57,7 +52,7 @@ public class LanguageAdapter extends BaseAdapter
         } else {
             img = (ImageView) convertView;
         }
-        img.setImageResource(languages[position]);
+        img.setImageResource(languages.get(position).getImage());
         img.setImageAlpha(70);
         return img;
     }
