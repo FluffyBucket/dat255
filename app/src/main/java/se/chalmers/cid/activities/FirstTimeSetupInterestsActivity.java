@@ -55,18 +55,24 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
     }
 
     public void nextActivity(View v) {
+        user.setInterests(userInterests);
         if (user.getRole() == 1) {
             Intent intent = new Intent(this, ProfileActivity.class);
-            user.setInterests(userInterests);
             intent.putExtra("user", user);
-            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-            usersRef.child(firebaseUser.getUid()).setValue(user);
+            saveUser(user);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, MentorListActivity.class);
+            intent.putExtra("user",user);
+            saveUser(user);
             startActivity(intent);
         }
+    }
+
+    private void saveUser(User user){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        usersRef.child(firebaseUser.getUid()).setValue(user);
     }
 
     private void setDynamicHeight(GridView gridView) {
