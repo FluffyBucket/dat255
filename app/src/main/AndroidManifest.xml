@@ -17,18 +17,25 @@
         </activity>
         <activity
             android:name=".activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_profile" />
         <activity
             android:name=".activities.FirstTimeSetupRoleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_first_time_setup_role"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".activities.FirstTimeSetupBasicsActivity" />
-        <activity android:name=".activities.FirstTimeSetupLanguagesActivity" />
-        <activity android:name=".activities.FirstTimeSetupInterestsActivity"/>
-        <activity android:name=".activities.MentorListActivity">
-        </activity>
+        <activity android:name=".activities.FirstTimeSetupBasicsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_first_time_setup_basics"/>
+        <activity android:name=".activities.FirstTimeSetupLanguagesActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_first_time_setup_language"/>
+        <activity android:name=".activities.FirstTimeSetupInterestsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_first_time_setup_interest"/>
+        <activity android:name=".activities.MentorListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_first_time_setup_role"/>
+
 
     </application>
 
