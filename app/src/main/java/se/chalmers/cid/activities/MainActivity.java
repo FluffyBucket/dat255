@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
-    private int userRole;
-    private String userId = "";
+
+
     private static final String TAG = "MainActivity";
-    private HashMap<String, User> users;
+
 
 
     @Override
@@ -64,20 +64,27 @@ public class MainActivity extends AppCompatActivity {
                     usersRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Log.d(TAG, "value: " + userRole);
 
-                            if (dataSnapshot.exists() && (userRole == 1)) {
-                                // Show profile activity
-                                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                                intent.putExtra("user", dataSnapshot.getValue(User.class));
-                                startActivity(intent);
+                            if (dataSnapshot.exists()) {
+
+                                if(dataSnapshot.getValue(User.class).getRole() == 1)
+                                {
+                                    // Show profile activity
+                                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                                    intent.putExtra("user", dataSnapshot.getValue(User.class));
+                                    startActivity(intent);
+                                }
+                                else
+                                {
+                                    // Show list activity
+                                    Intent intent = new Intent(MainActivity.this, MentorListActivity.class);
+                                    intent.putExtra("user", dataSnapshot.getValue(User.class));
+                                    startActivity(intent);
+                                }
+
                             }
-                            if (dataSnapshot.exists() && (userRole == 2)) {
-                                // Show list activity
-                                Intent intent = new Intent(MainActivity.this, MentorListActivity.class);
-                                intent.putExtra("user", dataSnapshot.getValue(User.class));
-                                startActivity(intent);
-                            } else {
+
+                            else {
                                 // Show registration
                                 startActivity(new Intent(MainActivity.this, FirstTimeSetupRoleActivity.class));
                             }
@@ -101,33 +108,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
-        ValueEventListener mentorListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                GenericTypeIndicator<HashMap<String, User>> t = new GenericTypeIndicator<HashMap<String, User>>() {
-                };
-                users = dataSnapshot.getValue(t);
-
-
-                for (Map.Entry<String, User> entry : users.entrySet()) {
-                    if (userId == entry.getKey()) {
-                        userRole = entry.getValue().getRole();
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
-            }
-        };
-
-        mDatabase.addValueEventListener(mentorListener);
-
     }
 
 
