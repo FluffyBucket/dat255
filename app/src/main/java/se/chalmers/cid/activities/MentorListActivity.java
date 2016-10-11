@@ -77,7 +77,6 @@ public class MentorListActivity extends AppCompatActivity {
             }
         };
 
-        Log.d("true/false", "framme1");
         ValueEventListener mentorListener2 = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -85,23 +84,19 @@ public class MentorListActivity extends AppCompatActivity {
                 GenericTypeIndicator<HashMap<String, User>> t = new GenericTypeIndicator<HashMap<String, User>>() {
                 };
                 users = dataSnapshot.getValue(t);
-                Log.d("true/false", "framme2");
                 int i = 0;
                 for (Map.Entry<String, User> entry : users.entrySet()) {
-                    Log.d("true/false", "framme3");
                     if (1 == entry.getValue().getRole()) {
-                        Log.d("true/false", "framme4");
                         mentors.add(entry.getValue());
                         mentorNames.add(entry.getValue().getName() + " \n " + entry.getValue().getPrefContactWay());
                         i++;
-                        Log.d("hej", "ÄR INNE I LOOPEN");
                     }
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w("hej", "loadPost:onCancelled", databaseError.toException());
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
             }
         };
 
