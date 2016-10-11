@@ -68,6 +68,8 @@ public class MentorListActivity extends AppCompatActivity {
         mentorNames = new ArrayList<String>();
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+        mentors.clear();
+        mentorNames.clear();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
