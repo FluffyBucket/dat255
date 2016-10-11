@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +40,8 @@ import java.util.Map;
 
 import se.chalmers.cid.R;
 import se.chalmers.cid.models.User;
+
+import static android.R.attr.key;
 
 
 public class MentorListActivity extends AppCompatActivity {
@@ -77,7 +80,7 @@ public class MentorListActivity extends AppCompatActivity {
             }
         };
 
-        ValueEventListener mentorListener2 = new ValueEventListener() {
+        ValueEventListener mentorListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -101,13 +104,25 @@ public class MentorListActivity extends AppCompatActivity {
         };
 
 
-        mDatabase.addValueEventListener(mentorListener2);
+        mDatabase.addValueEventListener(mentorListener);
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.activity_listitem, mentorNames);
+        ArrayAdapter mentorListAdapter = new ArrayAdapter<>(this, R.layout.activity_listitem, mentorNames);
         ListView listView = (ListView) findViewById(R.id.listView); //the list view with id "listView"
-        listView.setAdapter(adapter);       //adapter feeds it
+        listView.setAdapter(mentorListAdapter);       //adapter feeds it
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(MentorListActivity.this, ProfileActivity.class);
+                User mentorProfile = mentors.get(position);
+                intent.putExtra("user", mentorProfile);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
 

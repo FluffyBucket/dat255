@@ -113,6 +113,11 @@ public class ProfileActivity extends AppCompatActivity{
                   }
               });
         }
+        if (item.getItemId() == R.id.action_mentorlist) {
+
+            Intent intent = new Intent(this, MentorListActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -6,4 +6,8 @@
         android:title="Logout"
         app:showAsAction="never" />
 
+    <item android:id="@+id/action_mentorlist"
+        android:title="Mentorlist"
+        app:showAsAction="never" />
+
 </menu>
