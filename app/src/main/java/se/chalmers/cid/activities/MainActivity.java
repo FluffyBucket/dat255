@@ -37,15 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
-    private DatabaseReference mDatabaseRole;
-    private FirebaseDatabase fDataBase;
-    private FirebaseDatabase fDataBase2;
-    private User dUser;
-    private Query query;
     private int userRole;
-    private FirebaseUser user;
-    private DataSnapshot dSnap;
-    private String userId;
+    private String userId = "";
     private static final String TAG = "MainActivity";
     private HashMap<String, User> users;
 
@@ -53,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //   setContentView(R.layout.activity_main);
 
         if (!persistenceEnabled) {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -62,12 +54,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-
-
-       // userId = mAuth.getCurrentUser().getUid();
-        // mDatabaseRole = mDatabase.child(userId).child("role");
-        //Log.d(TAG, "value: " + role);
-
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -126,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                 for (Map.Entry<String, User> entry : users.entrySet()) {
-                 //   Log.d("hej", "UserID : " + entry.getKey() + " Count : " + entry.getValue());
-                  //  Log.d("hej", "UserID : " + " Count : " + entry.getValue().getRole());
                     if (userId == entry.getKey()) {
                         userRole = entry.getValue().getRole();
                     }
@@ -138,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w("hej", "loadPost:onCancelled", databaseError.toException());
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
             }
         };
 

@@ -88,8 +88,6 @@ public class MentorListActivity extends AppCompatActivity {
                 Log.d("true/false", "framme2");
                 int i = 0;
                 for (Map.Entry<String, User> entry : users.entrySet()) {
-                //    Log.d("hej", "UserID : " + entry.getKey() + " Count : " + entry.getValue());
-                  //  Log.d("hej", "UserID : " + " Count : " + entry.getValue().getRole());
                     Log.d("true/false", "framme3");
                     if (1 == entry.getValue().getRole()) {
                         Log.d("true/false", "framme4");
@@ -110,8 +108,7 @@ public class MentorListActivity extends AppCompatActivity {
 
         mDatabase.addValueEventListener(mentorListener2);
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.activity_listitem, mentorNames); // feeds random data looking like activity_listitem
-
+        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.activity_listitem, mentorNames);
         ListView listView = (ListView) findViewById(R.id.listView); //the list view with id "listView"
         listView.setAdapter(adapter);       //adapter feeds it
 
@@ -125,7 +122,7 @@ public class MentorListActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
-
+//Todo: Fix logout. Crashes when you signout and then start mainactivity
             //mAuth.signOut();
             Intent intent = new Intent(MentorListActivity.this, MainActivity.class);
             startActivity(intent);
