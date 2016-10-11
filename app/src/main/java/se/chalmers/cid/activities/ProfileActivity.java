@@ -112,8 +112,15 @@ public class ProfileActivity extends AppCompatActivity{
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
-
-            mAuth.signOut();
+            AuthUI.getInstance()
+              .signOut(this)
+              .addOnCompleteListener(new OnCompleteListener<Void>() {
+                  @Override
+                  public void onComplete(@NonNull Task<Void> task) {
+                      startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                      finish();
+                  }
+              });
         }
 
         return super.onOptionsItemSelected(item);
