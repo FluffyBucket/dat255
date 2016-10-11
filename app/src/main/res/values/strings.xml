@@ -3,7 +3,11 @@
     <string name="facebook_application_id" translatable="false">160552804393678</string>
     <string name="title_activity_profile">Profile</string>
 
-    <string name="title_activity_first_time_setup_role">FirstTimeSetupRole</string>
+    <string name="title_activity_first_time_setup_role">Who are you?</string>
+    <string name="title_activity_first_time_setup_basics">Setup basics</string>
+    <string name="title_activity_first_time_setup_interest">Setup interests</string>
+    <string name="title_activity_first_time_setup_language">Setup languages</string>
+
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
