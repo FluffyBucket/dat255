@@ -17,24 +17,14 @@ public class LanguageAdapter extends BaseAdapter
 {
     private Context mContext;
     private Integer[] languages = {
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag,
-            R.drawable.ic_apache,
-            R.drawable.ic_phone,
-            R.drawable.ic_default_flag
+        R.drawable.ic_language_swedish,
+        R.drawable.ic_language_english,
+        R.drawable.ic_language_spanish,
+        R.drawable.ic_language_german,
+        R.drawable.ic_language_afghanistan,
+        R.drawable.ic_language_france,
+        R.drawable.ic_language_syria,
+        R.drawable.ic_language_iran
     };
 
     public LanguageAdapter(Context c){
