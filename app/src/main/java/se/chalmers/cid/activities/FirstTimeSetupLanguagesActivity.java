@@ -59,6 +59,7 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
         user.setLanguages(userLang);
         intent.putExtra("user",user);
         startActivity(intent);
+        finish();
     }
 
     private void setDynamicHeight(GridView gridView) {

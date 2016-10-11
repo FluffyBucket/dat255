@@ -61,11 +61,13 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
             intent.putExtra("user", user);
             saveUser(user);
             startActivity(intent);
+            finish();
         } else {
             Intent intent = new Intent(this, MentorListActivity.class);
             intent.putExtra("user",user);
             saveUser(user);
             startActivity(intent);
+            finish();
         }
     }
 

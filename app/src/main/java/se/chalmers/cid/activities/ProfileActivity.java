@@ -43,16 +43,7 @@ public class ProfileActivity extends AppCompatActivity{
         binding.setUser(user);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (user == null) {
-                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
 
-            }
-        };
 
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(new InterestAdapter(this, user));
@@ -114,6 +105,7 @@ public class ProfileActivity extends AppCompatActivity{
         if (item.getItemId() == R.id.action_logout) {
 
             mAuth.signOut();
+
         }
 
         return super.onOptionsItemSelected(item);

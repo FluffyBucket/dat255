@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                                     intent.putExtra("user", dataSnapshot.getValue(User.class));
                                     startActivity(intent);
+                                    finish();
                                 }
                                 else
                                 {
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                                     Intent intent = new Intent(MainActivity.this, MentorListActivity.class);
                                     intent.putExtra("user", dataSnapshot.getValue(User.class));
                                     startActivity(intent);
+                                    finish();
                                 }
 
                             }

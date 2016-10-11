@@ -30,6 +30,7 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         user.setName(name);
         intent.putExtra("user",user);
         startActivity(intent);
+        finish();
     }
 
 }

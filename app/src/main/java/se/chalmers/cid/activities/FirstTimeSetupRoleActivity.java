@@ -34,6 +34,7 @@ public class FirstTimeSetupRoleActivity extends AppCompatActivity {
         user.setRole(2);
         intent.putExtra("user", user);
         startActivity(intent);
+        finish();
     }
 
     public void nextActivityMentor(View v){
@@ -41,5 +42,6 @@ public class FirstTimeSetupRoleActivity extends AppCompatActivity {
         user.setRole(1);
         intent.putExtra("user", user);
         startActivity(intent);
+        finish();
     }
 }
