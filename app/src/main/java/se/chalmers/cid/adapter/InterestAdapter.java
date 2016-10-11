@@ -61,9 +61,10 @@ public class InterestAdapter extends BaseAdapter
             list = interestsData.getData();
         }
         else{
+            int index = 0;
             for (Integer i:profileUser.getInterests()
                  ) {
-                list.put(i,interestsData.getData().get(i));
+                list.put(index++,interestsData.getData().get(i));
             }
 
         }
@@ -97,7 +98,7 @@ public class InterestAdapter extends BaseAdapter
         } else {
             img = (ImageView) convertView;
         }
-        img.setImageResource(interestsData.getData().get(position).getImage());
+        img.setImageResource(interests.get(position).getImage());
 
         if(mContext.getClass() != ProfileActivity.class)
             img.setImageAlpha(70);
