@@ -14,11 +14,16 @@ public class interestsData {
 
     private static ArrayMap<Integer,Interest> generate(){
         ArrayMap<Integer,Interest> list = new ArrayMap<>();
+        int i = 0;
 
-        for (int i = 0;i<10;i++){
-            Interest tmp = new Interest("Interest "+i,i, R.drawable.ic_phone);
-            list.put(i,tmp);
-        }
+
+        list.put(i++,new Interest("Basketball",i,R.drawable.ic_interests_basketball));
+        list.put(i++,new Interest("Soccer",i,R.drawable.ic_interests_fotboll));
+        list.put(i++,new Interest("Music",i,R.drawable.ic_interests_music));
+        list.put(i++,new Interest("Movie",i,R.drawable.ic_interests_movie));
+        list.put(i++,new Interest("Videogames",i,R.drawable.ic_interests_videogames));
+        list.put(i++,new Interest("Reading",i,R.drawable.ic_interests_reading));
+
 
         return list;
     }
