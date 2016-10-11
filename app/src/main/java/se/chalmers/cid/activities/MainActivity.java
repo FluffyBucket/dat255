@@ -36,12 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference mDatabase;
-
-
-    private static final String TAG = "MainActivity";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             persistenceEnabled = true;
         }
+
         mAuth = FirebaseAuth.getInstance();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -91,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                             Toast.makeText(MainActivity.this, "Failed to load users.", Toast.LENGTH_SHORT).show();
@@ -109,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
-
 
     @Override
     protected void onStart() {
@@ -129,12 +119,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN && resultCode == RESULT_CANCELED) {
             Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-
-    private void logout() {
-
-        mAuth.signOut();
     }
 
 }
