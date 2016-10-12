@@ -89,4 +89,12 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
         params.height = totalHeight;
         gridView.setLayoutParams(params);
     }
+
+    public void previousActivity(View v) {
+        Intent intent = new Intent(this,FirstTimeSetupBasicsActivity.class);
+        user.setLanguages(userLang);
+        intent.putExtra("user",user);
+        startActivity(intent);
+        finish();
+    }
 }
