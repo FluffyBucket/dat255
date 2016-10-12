@@ -23,16 +23,27 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
 
     }
 
-    public void nextActivity(View v){
-        Intent intent = new Intent(this,FirstTimeSetupLanguagesActivity.class);
+    private void updateUser(){
         EditText nameEditText = (EditText) findViewById(R.id.basicsNameEditText);
         String name = nameEditText.getText().toString();
         user.setName(name);
         user.setAge(((EditText) findViewById(R.id.basicsAgeEditText)).getText().toString());
         user.setPrefContactWay(((EditText) findViewById(R.id.basicsContactEditText)).getText().toString());
+    }
+
+    public void nextActivity(View v){
+        Intent intent = new Intent(this,FirstTimeSetupLanguagesActivity.class);
+        updateUser();
         intent.putExtra("user",user);
         startActivity(intent);
         finish();
     }
 
+    public void previousActivity(View v) {
+        Intent intent = new Intent(this,FirstTimeSetupRoleActivity.class);
+        updateUser();
+        intent.putExtra("user",user);
+        startActivity(intent);
+        finish();
+    }
 }
