@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#FFF"
     tools:context="se.chalmers.cid.activities.FirstTimeSetupRoleActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -11,24 +11,58 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
         <Button
             android:text="Mentor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_mentor"
-            android:onClick="nextActivityMentor"/>
+            android:id="@+id/role_button_mentor"
+            android:onClick="nextActivityMentor"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="192dp" />
 
         <Button
             android:text="Newly Arrived"
             android:layout_height="wrap_content"
-            android:id="@+id/button_refugee"
+            android:id="@+id/role_button_refugee"
             android:layout_width="match_parent"
-            android:onClick="nextActivityRefugee"/>
-    </LinearLayout>
+            android:onClick="nextActivityRefugee"
+            android:layout_below="@+id/role_button_mentor"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="1/4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView"
+            android:padding="16dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/role_button_next"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_arrow_right"
+            android:minWidth="48dip" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/role_button_cancel"
+            android:background="@drawable/ic_cancel"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:minWidth="48dip" />
+    </RelativeLayout>
 
 </FrameLayout>
