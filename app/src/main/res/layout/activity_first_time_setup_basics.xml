@@ -23,6 +23,22 @@
             android:id="@+id/basicsNameEditText"
             android:hint="Name/Nickname" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="Year of birth"
+            android:id="@+id/basicsAgeEditText" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/basicsContactEditText"
+            android:hint="Contact info" />
+
         <Button
             android:text="Next"
             android:layout_width="match_parent"

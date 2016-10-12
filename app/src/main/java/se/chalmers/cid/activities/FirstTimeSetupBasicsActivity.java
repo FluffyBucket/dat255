@@ -28,6 +28,8 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         EditText nameEditText = (EditText) findViewById(R.id.basicsNameEditText);
         String name = nameEditText.getText().toString();
         user.setName(name);
+        user.setAge(((EditText) findViewById(R.id.basicsAgeEditText)).getText().toString());
+        user.setPrefContactWay(((EditText) findViewById(R.id.basicsContactEditText)).getText().toString());
         intent.putExtra("user",user);
         startActivity(intent);
         finish();
