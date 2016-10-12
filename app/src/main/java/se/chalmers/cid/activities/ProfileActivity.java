@@ -30,6 +30,7 @@ import se.chalmers.cid.models.User;
 
 public class ProfileActivity extends AppCompatActivity{
     private User user;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -41,8 +42,13 @@ public class ProfileActivity extends AppCompatActivity{
         user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
 
-
-
+        mAuth = FirebaseAuth.getInstance();
+        if(!mAuth.getCurrentUser().getUid().equals(user.getId())){
+            findViewById(R.id.profileName).setFocusable(false);
+            findViewById(R.id.prefContactWayText).setFocusable(false);
+            findViewById(R.id.biographyText).setFocusable(false);
+            findViewById(R.id.profileAge).setFocusable(false);
+        }
 
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(new InterestAdapter(this, user));

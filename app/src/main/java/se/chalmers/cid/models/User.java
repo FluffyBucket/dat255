@@ -8,6 +8,9 @@ import java.util.List;
  */
 
 public class User implements Serializable {
+
+
+    private String id;
     private String name;
     private String age;
     private String prefContactWay;
@@ -19,6 +22,7 @@ public class User implements Serializable {
 
 
     public  User(){
+        this.id = "";
         this.name = "";
         this.age = "";
         this.prefContactWay = "";
@@ -26,7 +30,8 @@ public class User implements Serializable {
         this.role = -1;
     }
 
-    public User(String name, String age, String prefContactWay, String biography, int role) {
+    public User(String id, String name, String age, String prefContactWay, String biography, int role) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.prefContactWay = prefContactWay;
@@ -73,6 +78,10 @@ public class User implements Serializable {
     public void setRole(int role) {
         this.role = role;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     public List<Integer> getInterests() {
         return interests;

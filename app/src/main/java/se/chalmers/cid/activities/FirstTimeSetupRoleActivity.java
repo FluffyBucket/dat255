@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import se.chalmers.cid.R;
 import se.chalmers.cid.models.User;
 
@@ -18,12 +20,15 @@ import se.chalmers.cid.models.User;
  */
 public class FirstTimeSetupRoleActivity extends AppCompatActivity {
     private User user;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
         user = new User();
+        mAuth = FirebaseAuth.getInstance();
+        user.setId(mAuth.getCurrentUser().getUid());
         setContentView(R.layout.activity_first_time_setup_role);
 
 
