@@ -17,7 +17,7 @@
         android:id="@+id/interestList"
         android:stretchMode="columnWidth"
         android:numColumns="auto_fit"
-        android:layout_above="@id/interest_page_number"
+        android:layout_above="@+id/interest_page_number"
         android:columnWidth="64dp" />
 
     <TextView
