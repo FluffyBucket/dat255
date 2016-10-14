@@ -12,35 +12,18 @@
     tools:context="se.chalmers.cid.activities.FirstTimeSetupLanguagesActivity">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/languageList">
+
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_speech_head"
             android:adjustViewBounds="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
 
             android:id="@+id/lang_icon_speech"
             android:layout_weight="0" />
 
-        <TextView
-            android:text="@strings/spoken_lang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="false"
-            android:layout_toEndOf="@+id/lang_icon_speech"
-            android:id="@+id/lang_text_speech"
-            android:layout_above="@+id/languageList"
-            android:layout_centerHorizontal="false"
-            android:layout_centerInParent="false"
-            android:layout_centerVertical="true" />
-
-    </LinearLayout>
 
     <GridView
         android:layout_width="match_parent"
@@ -49,7 +32,9 @@
         android:stretchMode="columnWidth"
         android:numColumns="auto_fit"
         android:columnWidth="64dp"
-        android:layout_above="@id/lang_page_number"/>
+        android:layout_above="@+id/lang_page_number"
+        android:layout_below="@id/lang_icon_speech"
+        />
 
     <TextView
         android:text="3/4"
@@ -81,6 +66,15 @@
         android:layout_alignBottom="@+id/lang_page_number"
         android:layout_alignParentStart="true"
         android:onClick="previousActivity"/>
+
+    <TextView
+        android:text="@string/spoken_lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lang_text_speech"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/lang_icon_speech"
+        android:layout_marginTop="8dp"/>
 
 
 </RelativeLayout>
