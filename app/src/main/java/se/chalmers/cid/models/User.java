@@ -1,101 +1,91 @@
 package se.chalmers.cid.models;
 
 import java.io.Serializable;
-import java.util.List;
-
-/**
- * Created by valentin & mårlind on 22/09/2016.
- */
+import java.util.Map;
 
 public class User implements Serializable {
 
-
     private String id;
+    private boolean mentor = false;
     private String name;
     private String age;
-    private String prefContactWay;
     private String biography;
-    private int role;
-    private List<Integer> interests;
-    private List<Integer> languages;
+    private Map<String, Boolean> contactWays;
+    private Map<String, Boolean> interests;
+    private Map<String, Boolean> languages;
 
+    public User() {}
 
-
-    public  User(){
-        this.id = "";
-        this.name = "";
-        this.age = "";
-        this.prefContactWay = "";
-        this.biography = "";
-        this.role = -1;
-    }
-
-    public User(String id, String name, String age, String prefContactWay, String biography, int role) {
+    public User(String id, boolean mentor, String name, String age, String biography) {
         this.id = id;
+        this.mentor = mentor;
         this.name = name;
         this.age = age;
-        this.prefContactWay = prefContactWay;
         this.biography = biography;
-        this.role = role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getId() {
+        return id;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setPrefContactWay(String prefContactWay) {
-        this.prefContactWay = prefContactWay;
+    public boolean isMentor() {
+        return mentor;
     }
 
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setMentor(boolean mentor) {
+        this.mentor = mentor;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getAge() {
         return age;
     }
 
-    public String getPrefContactWay() {
-        return prefContactWay;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getBiography() {
         return biography;
     }
 
-    public int getRole() {
-        return role;
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public Map<String, Boolean> getContactWays() {
+        return contactWays;
     }
 
-    public String getId() { return id; }
+    public void setContactWays(Map<String, Boolean> contactWays) {
+        this.contactWays = contactWays;
+    }
 
-    public void setId(String id) { this.id = id; }
-
-    public List<Integer> getInterests() {
+    public Map<String, Boolean> getInterests() {
         return interests;
     }
 
-    public void setInterests(List<Integer> interests) {
+    public void setInterests(Map<String, Boolean> interests) {
         this.interests = interests;
     }
 
-    public List<Integer> getLanguages() {
+    public Map<String, Boolean> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(List<Integer> languages) {
+    public void setLanguages(Map<String, Boolean> languages) {
         this.languages = languages;
     }
+
 }

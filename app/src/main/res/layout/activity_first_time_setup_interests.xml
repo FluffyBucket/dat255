@@ -33,7 +33,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/role_button_next"
+        android:id="@+id/interest_button_next"
         android:layout_alignBaseline="@+id/interest_page_number"
         android:layout_alignBottom="@+id/interest_page_number"
         android:layout_alignParentEnd="true"
@@ -44,7 +44,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/role_button_cancel"
+        android:id="@+id/interest_button_cancel"
         android:background="@drawable/ic_arrow_left"
         android:minWidth="48dip"
         android:layout_alignBaseline="@+id/interest_page_number"
