@@ -1,90 +1,37 @@
 package se.chalmers.cid.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
+import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-
-import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import se.chalmers.cid.R;
 import se.chalmers.cid.activities.FirstTimeSetupInterestsActivity;
-import se.chalmers.cid.activities.FirstTimeSetupRoleActivity;
-import se.chalmers.cid.activities.MainActivity;
 import se.chalmers.cid.activities.ProfileActivity;
-import se.chalmers.cid.models.Interest;
-import se.chalmers.cid.constants.interestsData;
+import se.chalmers.cid.models.Attribute;
+import se.chalmers.cid.models.Constants;
 import se.chalmers.cid.models.User;
 
-/**
- * Created by valentin & mårlind on 22/09/2016.
- */
+public class InterestAdapter extends AttributeAdapter {
 
-public class InterestAdapter extends BaseAdapter
-{
-    private Context mContext;
-    private User profileUser;
-    private User localUser;
-
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private ArrayMap<Integer,Interest> interests;
-
-    public InterestAdapter(Context c,User user){
-        mContext = c;
-        this.profileUser = user;
-
-        interests = getInterests();
+    public InterestAdapter(Context context, User user){
+        super(context, user);
     }
 
-    private ArrayMap<Integer,Interest> getInterests(){
+    @Override
+    public ArrayMap<String, Attribute> attributesForUser(User user) {
+        ArrayMap<String, Attribute> interests = new ArrayMap<>();
 
-        ArrayMap<Integer,Interest> list = new ArrayMap<>();
-
-        if (mContext.getClass() == FirstTimeSetupInterestsActivity.class)
-        {
-            list = interestsData.getData();
-        }
-        else{
-            int index = 0;
-            for (Integer i:profileUser.getInterests()
-                 ) {
-                list.put(index++,interestsData.getData().get(i));
+        if (mContext.getClass() == FirstTimeSetupInterestsActivity.class) {
+            interests = Constants.INTERESTS;
+        } else {
+            for (String interestName : user.getInterests().keySet()) {
+                interests.put(interestName, Constants.INTERESTS.get(interestName));
             }
-
         }
 
-        return list;
-    }
-
-    @Override
-    public int getCount() {
-        return interests.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
+        return interests;
     }
 
     @Override
@@ -98,11 +45,13 @@ public class InterestAdapter extends BaseAdapter
         } else {
             img = (ImageView) convertView;
         }
-        img.setImageResource(interests.get(position).getImage());
+        img.setImageResource(mAttributes.valueAt(position).getImage());
 
-        if(mContext.getClass() != ProfileActivity.class)
+        if(mContext.getClass() != ProfileActivity.class) {
             img.setImageAlpha(70);
+        }
 
         return img;
     }
+
 }
