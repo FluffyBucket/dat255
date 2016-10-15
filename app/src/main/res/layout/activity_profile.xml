@@ -136,10 +136,10 @@
                                 android:inputType="textPersonName"
                                 android:ems="10"
                                 android:layout_weight="1"
-                                android:hint="Prefered way of contact"
+                                android:hint="Preferred way of contact"
                                 android:paddingLeft="10dp"
                                 android:id="@+id/prefContactWayText"
-                                android:text="@{user.prefContactWay}" />
+                                android:text="Contact Ways" />
                         </LinearLayout>
 
                     </LinearLayout>
