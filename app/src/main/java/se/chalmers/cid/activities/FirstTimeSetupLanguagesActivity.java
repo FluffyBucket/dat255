@@ -93,10 +93,10 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
 
     public void previousActivity(View v) {
         Intent intent = new Intent(this,FirstTimeSetupBasicsActivity.class);
-
+        intent.putExtra("user",mUser);
 
         startActivity(intent);
-        
+        finish();
     }
 
 }

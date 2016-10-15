@@ -34,7 +34,7 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         updateUser();
         intent.putExtra("user",mUser);
         startActivity(intent);
-
+        finish();
     }
 
     public void previousActivity(View v) {
@@ -42,6 +42,6 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         updateUser();
         intent.putExtra("user",mUser);
         startActivity(intent);
-
+        finish();
     }
 }
