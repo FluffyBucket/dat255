@@ -22,22 +22,22 @@
             android:name=".activities.FirstTimeSetupRoleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_first_time_setup_role"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.FirstTimeSetupBasicsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_first_time_setup_basics"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.FirstTimeSetupLanguagesActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_first_time_setup_language"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.FirstTimeSetupInterestsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_first_time_setup_interest"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.MentorListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

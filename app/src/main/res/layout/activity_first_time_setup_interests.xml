@@ -37,7 +37,7 @@
         android:layout_alignBaseline="@+id/interest_page_number"
         android:layout_alignBottom="@+id/interest_page_number"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_arrow_right"
+        android:background="@drawable/ic_checkmark"
         android:minWidth="48dip"
         android:onClick="nextActivity"/>
 
