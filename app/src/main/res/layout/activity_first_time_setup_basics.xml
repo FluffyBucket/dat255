@@ -11,75 +11,94 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="se.chalmers.cid.activities.FirstTimeSetupBasicsActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@color/authui_colorAccent"
 
-        android:layout_alignParentLeft="true"
-        android:id="@+id/imageView"
-        android:minWidth="48dp"
-        android:minHeight="48dp" />
-
-    <EditText
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/basicsNameEditText"
-        android:hint="Name/Nickname"
+        android:layout_height="match_parent"
+        android:layout_above="@id/basics_page_number">
 
-        android:layout_alignBaseline="@id/imageView"
-        android:layout_alignBottom="@id/imageView"
-        android:layout_toRightOf="@+id/imageView" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@color/authui_colorAccent"
-        android:id="@+id/imageView2"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/basicsContactEditText"
-        android:hint="Contact info"
-        android:layout_below="@id/basicsNameEditText"
-        android:layout_alignBottom="@id/imageView2"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_marginTop="24dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@color/authui_colorAccent"
-        android:id="@+id/imageView3"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
 
+                android:id="@+id/imageView"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:background="@drawable/ic_person" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:hint="Year of birth"
-        android:id="@+id/basicsAgeEditText"
-        android:layout_below="@id/basicsContactEditText"
-        android:layout_toRightOf="@+id/imageView3"
-        android:layout_marginTop="24dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/basicsNameEditText"
+                android:hint="Name/Nickname"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@color/authui_colorAccent"
+                android:id="@+id/imageView2"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/basicsContactEditText"
+                android:hint="Contact info"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView3"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+
+
+                android:background="@drawable/ic_age" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:hint="Year of birth"
+                android:id="@+id/basicsAgeEditText"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+               />
+
+        </TableRow>
+
+    </TableLayout>
 
     <TextView
         android:text="2/4"
@@ -100,7 +119,7 @@
         android:background="@drawable/ic_arrow_right"
         android:minWidth="48dip"
         android:onClick="nextActivity"
-        android:foregroundTintMode="add" />
+        />
 
     <Button
         android:layout_width="wrap_content"
