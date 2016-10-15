@@ -21,7 +21,6 @@
         <activity
             android:name=".activities.FirstTimeSetupRoleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_first_time_setup_role"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.FirstTimeSetupBasicsActivity"
@@ -31,12 +30,10 @@
         <activity
             android:name=".activities.FirstTimeSetupLanguagesActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_first_time_setup_language"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.FirstTimeSetupInterestsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_first_time_setup_interest"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.MentorListActivity"
