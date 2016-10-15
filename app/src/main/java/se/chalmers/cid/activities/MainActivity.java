@@ -2,14 +2,9 @@ package se.chalmers.cid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
-
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,13 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-
-import java.util.HashMap;
-import java.util.Map;
 
 import se.chalmers.cid.models.User;
 
@@ -32,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 9001;
 
-    private static boolean persistenceEnabled = false;
+    private static boolean mPersistenceEnabled = false;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -41,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!persistenceEnabled) {
+        if (!mPersistenceEnabled) {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-            persistenceEnabled = true;
+            mPersistenceEnabled = true;
         }
 
         mAuth = FirebaseAuth.getInstance();
@@ -59,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
                             if (dataSnapshot.exists()) {
 
-                                if(dataSnapshot.getValue(User.class).getRole() == 1)
+                                if(dataSnapshot.getValue(User.class).isMentor())
                                 {
                                     // Show profile activity
                                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
