@@ -44,4 +44,8 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

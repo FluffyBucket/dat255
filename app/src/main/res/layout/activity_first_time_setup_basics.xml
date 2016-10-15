@@ -15,7 +15,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/basics_page_number">
+        android:layout_above="@+id/basics_page_number">
 
         <TableRow
             android:layout_width="match_parent"

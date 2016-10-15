@@ -99,4 +99,8 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
 }

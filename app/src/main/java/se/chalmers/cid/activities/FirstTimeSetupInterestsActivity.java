@@ -70,6 +70,7 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
         if (mUser.isMentor()) {
             Intent intent = new Intent(this, ProfileActivity.class);
             intent.putExtra("user", mUser);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         } else {
@@ -78,6 +79,13 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+
+    public void previousActivity(View v){
+        Intent intent = new Intent(FirstTimeSetupInterestsActivity.this,FirstTimeSetupLanguagesActivity.class);
+        intent.putExtra("user",mUser);
+        startActivity(intent);
+        finish();
     }
 
     private void saveUser(User user) {
@@ -108,6 +116,10 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
         params.height = totalHeight;
         gridView.setLayoutParams(params);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
 }

@@ -38,4 +38,5 @@ public class FirstTimeSetupRoleActivity extends AppCompatActivity {
         finish();
     }
 
+
 }
