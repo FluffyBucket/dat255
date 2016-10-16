@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import se.chalmers.cid.activities.FirstTimeSetupInterestsActivity;
 import se.chalmers.cid.activities.ProfileActivity;
 import se.chalmers.cid.models.Attribute;
-import se.chalmers.cid.models.Constants;
+import se.chalmers.cid.models.Attributes;
 import se.chalmers.cid.models.User;
 
 public class InterestAdapter extends AttributeAdapter {
@@ -24,10 +24,10 @@ public class InterestAdapter extends AttributeAdapter {
         ArrayMap<String, Attribute> interests = new ArrayMap<>();
 
         if (mContext.getClass() == FirstTimeSetupInterestsActivity.class) {
-            interests = Constants.INTERESTS;
+            interests = Attributes.INTERESTS;
         } else {
             for (String interestName : user.getInterests().keySet()) {
-                interests.put(interestName, Constants.INTERESTS.get(interestName));
+                interests.put(interestName, Attributes.INTERESTS.get(interestName));
             }
         }
 

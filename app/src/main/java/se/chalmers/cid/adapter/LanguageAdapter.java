@@ -8,7 +8,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import se.chalmers.cid.models.Attribute;
-import se.chalmers.cid.models.Constants;
+import se.chalmers.cid.models.Attributes;
 import se.chalmers.cid.models.User;
 
 public class LanguageAdapter extends AttributeAdapter {
@@ -19,7 +19,7 @@ public class LanguageAdapter extends AttributeAdapter {
 
     @Override
     public ArrayMap<String, Attribute> attributesForUser(User user) {
-        return Constants.LANGUAGES;
+        return Attributes.LANGUAGES;
     }
 
     @Override
