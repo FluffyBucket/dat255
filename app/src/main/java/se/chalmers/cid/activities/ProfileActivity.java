@@ -2,13 +2,7 @@ package se.chalmers.cid.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,29 +15,23 @@ import android.widget.ListAdapter;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 import se.chalmers.cid.R;
 import se.chalmers.cid.adapter.InterestAdapter;
 import se.chalmers.cid.databinding.ActivityProfileBinding;
 import se.chalmers.cid.models.User;
 
-public class ProfileActivity extends AppCompatActivity{
-    private User user;
-    private FirebaseAuth mAuth;
-
+public class ProfileActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onUserDataLoaded() {
         setContentView(R.layout.activity_profile);
         ActivityProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
         Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra("user");
+        User user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
 
-        mAuth = FirebaseAuth.getInstance();
-        if(!mAuth.getCurrentUser().getUid().equals(user.getId())){
+        if (!mUser.getId().equals(user.getId())) {
             findViewById(R.id.profileName).setFocusable(false);
             findViewById(R.id.prefContactWayText).setFocusable(false);
             findViewById(R.id.biographyText).setFocusable(false);
@@ -62,13 +50,9 @@ public class ProfileActivity extends AppCompatActivity{
                 } else {
                     img.setImageAlpha(70);
                 }
-                //view = img;
-
-                //Toast.makeText(MainActivity.this, "Kebab" + img.getImageAlpha(), Toast.LENGTH_SHORT).show();
             }
         });
         setDynamicHeight(interestGrid);
-
     }
 
     private void setDynamicHeight(GridView gridView) {
@@ -78,19 +62,15 @@ public class ProfileActivity extends AppCompatActivity{
             return;
         }
 
-        int totalHeight = 0;
-        int items = gridViewAdapter.getCount();
-        int rows = 0;
-
         View listItem = gridViewAdapter.getView(0, null, gridView);
         listItem.measure(0, 0);
-        totalHeight = 200;//listItem.getMeasuredHeight();
+        int totalHeight = 200; //listItem.getMeasuredHeight();
 
+        int items = gridViewAdapter.getCount();
 
-        float x = 1;
         if (items > 5) {
-            x = items / 5;
-            rows = (int) (x + 1);
+            float x = items / 5;
+            int rows = (int) (x + 1);
             totalHeight *= rows;
         }
 
@@ -100,30 +80,28 @@ public class ProfileActivity extends AppCompatActivity{
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
             AuthUI.getInstance()
-              .signOut(this)
-              .addOnCompleteListener(new OnCompleteListener<Void>() {
-                  @Override
-                  public void onComplete(@NonNull Task<Void> task) {
-                      startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                      finish();
-                  }
-              });
+                    .signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    });
         }
         if (item.getItemId() == R.id.action_mentorlist) {
 
             Intent intent = new Intent(this, MentorListActivity.class);
             startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
+
 }
