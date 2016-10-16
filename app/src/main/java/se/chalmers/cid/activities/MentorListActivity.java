@@ -3,7 +3,6 @@ package se.chalmers.cid.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,34 +11,32 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import se.chalmers.cid.R;
+import se.chalmers.cid.adapter.MentorListAdapter;
 import se.chalmers.cid.models.User;
 
 
-public class MentorListActivity extends AppCompatActivity {
+public class MentorListActivity extends BaseActivity {
 
-    private FirebaseListAdapter<User> mAdapter;
+    private MentorListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor_list);
+    }
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
-
-        mAdapter = new FirebaseListAdapter<User>(this, User.class, android.R.layout.simple_list_item_1, ref) {
+    @Override
+    protected void onUserDataLoaded() {
+        mAdapter = new MentorListAdapter(this, mUser, android.R.layout.simple_list_item_1) {
             @Override
-            protected void populateView(View view, User user, int position) {
+            protected void populateView(View view, User user) {
                 ((TextView) view.findViewById(android.R.id.text1)).setText(user.getName());
             }
         };
-
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,4 +77,3 @@ public class MentorListActivity extends AppCompatActivity {
     }
 
 }
-
