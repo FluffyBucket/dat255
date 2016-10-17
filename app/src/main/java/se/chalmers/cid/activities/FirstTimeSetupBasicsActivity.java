@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import se.chalmers.cid.R;
 import se.chalmers.cid.models.User;
@@ -30,6 +31,19 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         mUser.setPhone(((EditText) findViewById(R.id.basicsPhoneEditText)).getText().toString());
         mUser.setEmail(((EditText) findViewById(R.id.basicsEmailEditText)).getText().toString());
         //mUser.setPrefContactWay(((EditText) findViewById(R.id.basicsContactEditText)).getText().toString());
+    }
+
+    public void genderButtons(View v){
+        ((ImageView)findViewById(R.id.basicsGenderApacheButton)).setImageAlpha(128);
+        ((ImageView)findViewById(R.id.basicsGenderMaleButton)).setImageAlpha(128);
+        ((ImageView)findViewById(R.id.basicsGenderFemaleButton)).setImageAlpha(128);
+        ((ImageView)findViewById(R.id.basicsGenderNeutralButton)).setImageAlpha(128);
+        ((ImageView)findViewById(R.id.basicsGenderApacheButton)).setTag("apache");
+        ((ImageView)findViewById(R.id.basicsGenderMaleButton)).setTag("male");
+        ((ImageView)findViewById(R.id.basicsGenderFemaleButton)).setTag("female");
+        ((ImageView)findViewById(R.id.basicsGenderNeutralButton)).setTag("neutral");
+        ((ImageView)v).setImageAlpha(256);
+        mUser.setGender((String) v.getTag());
     }
 
     public void nextActivity(View v){
