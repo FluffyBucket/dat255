@@ -167,7 +167,25 @@ public class ProfileActivity extends BaseActivity {
         }
     }
     public void facebookButton(View v){
-        Toast.makeText(getApplicationContext(), mUser.getFacebook(), Toast.LENGTH_SHORT).show();
+        if(!(mUser.getFacebook().isEmpty())){
+            fixUrl(mUser.getFacebook());
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(fixUrl(mUser.getFacebook()))));
+        } else {
+            Toast.makeText(getApplicationContext(), "This person has no Facebook currently...", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    private String fixUrl(String url){
+        if (!url.startsWith("http://www.facebook.com/") && !url.startsWith("https://www.facebook.com/"))
+            url = "http://www.facebook.com/" + url;
+        if (!url.startsWith("http://www.") && !url.startsWith("https://www."))
+            url = "http://www." + url;
+        if (!url.startsWith("http://") && !url.startsWith("https://"))
+            url = "http://" + url;
+
+        return url;
     }
 
 }
