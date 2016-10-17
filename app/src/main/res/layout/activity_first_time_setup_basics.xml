@@ -156,6 +156,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_apache"
@@ -164,9 +165,11 @@
                 android:minHeight="48dp"
                 android:minWidth="48dp"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:alpha="0.5" />
 
             <ImageView
+                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_apache"
@@ -175,9 +178,11 @@
                 android:minHeight="48dp"
                 android:minWidth="48dp"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:alpha="0.5" />
 
             <ImageView
+                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_apache"
@@ -186,9 +191,11 @@
                 android:minHeight="48dp"
                 android:minWidth="48dp"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:alpha="0.5" />
 
             <ImageView
+                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_apache"
@@ -197,7 +204,8 @@
                 android:minHeight="48dp"
                 android:minWidth="48dp"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:alpha="0.5" />
         </LinearLayout>
     </LinearLayout>
 
