@@ -42,7 +42,7 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.basicsGenderMaleButton)).setTag("male");
         ((ImageView)findViewById(R.id.basicsGenderFemaleButton)).setTag("female");
         ((ImageView)findViewById(R.id.basicsGenderNeutralButton)).setTag("neutral");
-        ((ImageView)v).setImageAlpha(256);
+        ((ImageView)v).setImageAlpha(0);
         mUser.setGender((String) v.getTag());
     }
 
