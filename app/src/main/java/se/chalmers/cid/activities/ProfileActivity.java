@@ -178,13 +178,10 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private String fixUrl(String url){
-        if (!url.startsWith("http://www.facebook.com/") && !url.startsWith("https://www.facebook.com/"))
-            url = "http://www.facebook.com/" + url;
-        if (!url.startsWith("http://www.") && !url.startsWith("https://www."))
-            url = "http://www." + url;
-        if (!url.startsWith("http://") && !url.startsWith("https://"))
-            url = "http://" + url;
-
+        if(url.contains("facebook.com/")){
+            url = url.substring(url.lastIndexOf("facebook.com/"));
+        }
+        url = "http://www.facebook.com/" + url;
         return url;
     }
 
