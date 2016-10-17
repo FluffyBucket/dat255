@@ -38,6 +38,8 @@ public class ProfileActivity extends BaseActivity {
             findViewById(R.id.profileAge).setFocusable(false);
         }
 
+        fixGenderIcon(user);
+
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(new InterestAdapter(this, user));
         interestGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,6 +55,26 @@ public class ProfileActivity extends BaseActivity {
             }
         });
         setDynamicHeight(interestGrid);
+    }
+
+    private void fixGenderIcon(User user) {
+        switch (user.getGender()){
+            case "male":
+                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_male);
+                break;
+            case "female":
+                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_female);
+                break;
+            case "neutral":
+                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_neutral);
+                break;
+            case "apache":
+                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_apache);
+                break;
+            default:
+                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_questionmark);
+                break;
+        }
     }
 
     private void setDynamicHeight(GridView gridView) {
