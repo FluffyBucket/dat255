@@ -36,7 +36,6 @@ public class ProfileActivity extends BaseActivity {
 
         if (!mUser.getId().equals(user.getId())) {
             findViewById(R.id.profileName).setFocusable(false);
-            findViewById(R.id.prefContactWayText).setFocusable(false);
             findViewById(R.id.biographyText).setFocusable(false);
             findViewById(R.id.profileAge).setFocusable(false);
         }
