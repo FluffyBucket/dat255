@@ -39,35 +39,13 @@
                 android:id="@+id/basicsNameEditText"
                 android:hint="Name/Nickname"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                />
-
+                android:layout_weight="1"/>
+                <!--android:text="@{user.name}"-->
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@color/authui_colorAccent"
-                android:id="@+id/imageView2"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/basicsContactEditText"
-                android:hint="Contact info"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
 
         </TableRow>
 
@@ -93,9 +71,90 @@
                 android:hint="Year of birth"
                 android:id="@+id/basicsAgeEditText"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-               />
+                android:layout_weight="1"/>
+                <!--android:text="@{user.age}"-->
+        </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:background="@drawable/ic_phone"
+                android:layout_column="0" />
+
+            <EditText
+                android:ems="10"
+                android:inputType="phone"
+                android:id="@+id/basicsPhoneEditText"
+                android:hint="07XX XXXXXX"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_column="1"/>
+                <!--android:text="@{user.phone}"-->
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView4"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:background="@drawable/ic_mail"
+                android:layout_column="0" />
+
+            <EditText
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/basicsEmailEditText"
+                android:hint="Name@Domain.xxx"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+                <!--android:text="@{user.email}"-->
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView5"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:background="@drawable/ic_facebook"
+                android:layout_column="0" />
+
+            <EditText
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/basicsFacebookEditText"
+                android:hint="Facebook.com/Username"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+                <!--android:text="@{user.facebook}"-->
         </TableRow>
 
     </TableLayout>

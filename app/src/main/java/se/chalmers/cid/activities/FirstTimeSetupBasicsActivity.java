@@ -26,6 +26,9 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
         String name = nameEditText.getText().toString();
         mUser.setName(name);
         mUser.setAge(((EditText) findViewById(R.id.basicsAgeEditText)).getText().toString());
+        mUser.setFacebook(((EditText) findViewById(R.id.basicsFacebookEditText)).getText().toString());
+        mUser.setPhone(((EditText) findViewById(R.id.basicsPhoneEditText)).getText().toString());
+        mUser.setEmail(((EditText) findViewById(R.id.basicsEmailEditText)).getText().toString());
         //mUser.setPrefContactWay(((EditText) findViewById(R.id.basicsContactEditText)).getText().toString());
     }
 

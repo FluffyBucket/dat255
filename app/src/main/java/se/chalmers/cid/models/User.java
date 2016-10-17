@@ -9,19 +9,33 @@ public class User implements Serializable {
     private boolean mentor = false;
     private String name;
     private String age;
+    private String gender;
+
     private String biography;
+
+    private String email;
+    private String facebook;
+    private String phone;
+
     private Map<String, Boolean> contactWays;
     private Map<String, Boolean> interests;
     private Map<String, Boolean> languages;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String id, boolean mentor, String name, String age, String biography) {
+    public User(String id, boolean mentor, String name, String age, String gender, String biography, String phone, String email, String facebook) {
         this.id = id;
         this.mentor = mentor;
         this.name = name;
         this.age = age;
+        this.gender = gender;
+
         this.biography = biography;
+
+        this.phone = phone;
+        this.email = email;
+        this.facebook = facebook;
     }
 
     public String getId() {
@@ -46,6 +60,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getAge() {
@@ -86,6 +108,30 @@ public class User implements Serializable {
 
     public void setLanguages(Map<String, Boolean> languages) {
         this.languages = languages;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
     }
 
 }
