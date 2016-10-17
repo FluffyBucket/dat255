@@ -12,10 +12,44 @@
     tools:context="se.chalmers.cid.activities.FirstTimeSetupBasicsActivity">
 
 
+    <TextView
+        android:text="2/4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/basics_page_number"
+        android:padding="16dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/role_button_next"
+        android:layout_alignBaseline="@+id/basics_page_number"
+        android:layout_alignBottom="@+id/basics_page_number"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_arrow_right"
+        android:minWidth="48dip"
+        android:onClick="nextActivity"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/role_button_cancel"
+        android:background="@drawable/ic_arrow_left"
+        android:minWidth="48dip"
+        android:layout_alignBaseline="@+id/basics_page_number"
+        android:layout_alignBottom="@+id/basics_page_number"
+        android:layout_alignParentStart="true"
+        android:onClick="previousActivity"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -159,7 +193,7 @@
                 android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_apache"
+                app:srcCompat="@drawable/ic_male"
                 android:id="@+id/basicsGenderMaleButton"
                 android:layout_weight="1"
                 android:minHeight="48dp"
@@ -172,7 +206,7 @@
                 android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_apache"
+                app:srcCompat="@drawable/ic_female"
                 android:id="@+id/basicsGenderFemaleButton"
                 android:layout_weight="1"
                 android:minHeight="48dp"
@@ -185,7 +219,7 @@
                 android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_apache"
+                app:srcCompat="@drawable/ic_neutral"
                 android:id="@+id/basicsGenderNeutralButton"
                 android:layout_weight="1"
                 android:minHeight="48dp"
@@ -208,39 +242,5 @@
                 android:alpha="0.5" />
         </LinearLayout>
     </LinearLayout>
-
-
-
-    <TextView
-        android:text="2/4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/basics_page_number"
-        android:padding="16dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/role_button_next"
-        android:layout_alignBaseline="@+id/basics_page_number"
-        android:layout_alignBottom="@+id/basics_page_number"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_arrow_right"
-        android:minWidth="48dip"
-        android:onClick="nextActivity"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/role_button_cancel"
-        android:background="@drawable/ic_arrow_left"
-        android:minWidth="48dip"
-        android:layout_alignBaseline="@+id/basics_page_number"
-        android:layout_alignBottom="@+id/basics_page_number"
-        android:layout_alignParentStart="true"
-        android:onClick="previousActivity"/>
 
 </RelativeLayout>
