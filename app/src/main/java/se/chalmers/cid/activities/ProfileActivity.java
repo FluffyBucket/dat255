@@ -25,13 +25,13 @@ import se.chalmers.cid.databinding.ActivityProfileBinding;
 import se.chalmers.cid.models.User;
 
 public class ProfileActivity extends BaseActivity {
-
+    private User user;
     @Override
     protected void onUserDataLoaded() {
         setContentView(R.layout.activity_profile);
         ActivityProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
         Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
 
         if (!mUser.getId().equals(user.getId())) {
@@ -129,8 +129,8 @@ public class ProfileActivity extends BaseActivity {
     }
 
     public void phoneButton(View v){
-        if(!(mUser.getPhone().isEmpty())){
-            dialPhoneNumber(mUser.getPhone());
+        if(!(user.getPhone().isEmpty())){
+            dialPhoneNumber(user.getPhone());
         } else {
             Toast.makeText(getApplicationContext(), "This person has no phone number currently...", Toast.LENGTH_SHORT).show();
         }
@@ -139,8 +139,8 @@ public class ProfileActivity extends BaseActivity {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
     public void mailButton(View v){
-        if(!(mUser.getEmail().isEmpty())){
-            sendEmail(mUser.getEmail());
+        if(!(user.getEmail().isEmpty())){
+            sendEmail(user.getEmail());
         } else {
             Toast.makeText(getApplicationContext(), "This person has no phone number currently...", Toast.LENGTH_SHORT).show();
         }
@@ -167,8 +167,8 @@ public class ProfileActivity extends BaseActivity {
         }
     }
     public void facebookButton(View v){
-        if(!(mUser.getFacebook().isEmpty())){
-            fixUrl(mUser.getFacebook());
+        if(!(user.getFacebook().isEmpty())){
+            fixUrl(user.getFacebook());
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(fixUrl(mUser.getFacebook()))));
         } else {
             Toast.makeText(getApplicationContext(), "This person has no Facebook currently...", Toast.LENGTH_SHORT).show();
