@@ -44,7 +44,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_apache"
+                                android:src="@drawable/ic_questionmark"
                                 android:elevation="1dp"
                                 android:id="@+id/sexImg"
                                 android:layout_alignParentBottom="true"
@@ -127,19 +127,24 @@
                                 android:layout_height="match_parent"
                                 app:srcCompat="@drawable/ic_phone"
                                 android:layout_weight="5"
+                                android:onClick="phoneButton"
                                 android:layout_width="match_parent"
-                                android:id="@+id/contactWayImg" />
-
-                            <EditText
-                                android:layout_width="match_parent"
+                                android:id="@+id/phoneImgButton" />
+                            <ImageView
                                 android:layout_height="match_parent"
-                                android:inputType="textPersonName"
-                                android:ems="10"
-                                android:layout_weight="1"
-                                android:hint="Preferred way of contact"
-                                android:paddingLeft="10dp"
-                                android:id="@+id/prefContactWayText"
-                                android:text="Contact Ways" />
+                                app:srcCompat="@drawable/ic_mail"
+                                android:layout_weight="5"
+                                android:onClick="mailButton"
+                                android:layout_width="match_parent"
+                                android:id="@+id/emailImgButton" />
+                            <ImageView
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/ic_facebook"
+                                android:layout_weight="5"
+                                android:onClick="facebookButton"
+                                android:layout_width="match_parent"
+                                android:id="@+id/facebookImgButton" />
+
                         </LinearLayout>
 
                     </LinearLayout>
