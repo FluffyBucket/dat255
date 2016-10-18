@@ -1,9 +1,12 @@
 package se.chalmers.cid.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.gson.Gson;
 
 public class MainActivity extends BaseActivity {
 
@@ -11,6 +14,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onUserDataLoaded() {
+        saveUser();
         if (mUser.isMentor()) {
             // Show profile activity
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
@@ -19,7 +23,7 @@ public class MainActivity extends BaseActivity {
             finish();
         } else {
             // Show list activity
-            Intent intent = new Intent(MainActivity.this, MentorListActivity.class);
+            Intent intent = new Intent(MainActivity.this, MainNavigationActivity.class);
             startActivity(intent);
             finish();
         }
@@ -48,6 +52,15 @@ public class MainActivity extends BaseActivity {
         if (requestCode == RC_SIGN_IN && resultCode == RESULT_CANCELED) {
             Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void saveUser(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(mUser);
+        editor.putString("user",json);
+        editor.commit();
     }
 
 }
