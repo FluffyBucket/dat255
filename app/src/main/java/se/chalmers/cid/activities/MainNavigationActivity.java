@@ -1,10 +1,17 @@
 package se.chalmers.cid.activities;
 
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.os.Handler;
+
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
+
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,11 +19,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
 import se.chalmers.cid.R;
+import se.chalmers.cid.adapter.MentorListAdapter;
+import se.chalmers.cid.models.User;
 
-public class MainNavigationActivity extends AppCompatActivity
+public class MainNavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private MentorListAdapter mAdapter;
+
+    private NavigationView navigationView;
+    private DrawerLayout drawer;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,22 +51,16 @@ public class MainNavigationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -80,24 +100,61 @@ public class MainNavigationActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        switch (item.getItemId()){
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            case R.id.nav_profile:
+                Intent intent = new Intent(MainNavigationActivity.this,ProfileActivity.class);
 
-        } else if (id == R.id.nav_slideshow) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        } else if (id == R.id.nav_manage) {
+                Gson gson = new Gson();
+                String json = prefs.getString("user","");
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+                intent.putExtra("user",gson.fromJson(json,User.class));
+                startActivity(intent);
+                break;
+            case R.id.nav_settings:
+                Toast.makeText(MainNavigationActivity.this,"SETTINGS",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_logout:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(MainNavigationActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        });
+                break;
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+    @Override
+    protected void onUserDataLoaded() {
+        mAdapter = new MentorListAdapter(this, mUser, android.R.layout.simple_list_item_1) {
+            @Override
+            protected void populateView(View view, User user) {
+                ((TextView) view.findViewById(android.R.id.text1)).setText(user.getName());
+            }
+        };
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainNavigationActivity.this, ProfileActivity.class);
+                User user = mAdapter.getItem(position);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
 }
