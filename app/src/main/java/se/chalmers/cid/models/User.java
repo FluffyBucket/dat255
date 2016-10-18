@@ -1,41 +1,52 @@
 package se.chalmers.cid.models;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 public class User implements Serializable {
 
     private String id;
-    private boolean mentor = false;
-    private String name;
-    private String age;
-    private String gender;
+    private boolean mentor;
 
+    private String name;
+    private String gender;
+    private String age;
     private String biography;
 
-    private String email;
-    private String facebook;
-    private String phone;
-
-    private Map<String, Boolean> contactWays;
+    private Map<String, String> contactWays;
     private Map<String, Boolean> interests;
     private Map<String, Boolean> languages;
 
     public User() {
+        id = null;
+        mentor = false;
+        name = null;
+        gender = null;
+        age = null;
+        biography = null;
+        contactWays = new HashMap<>();
+        interests = new HashMap<>();
+        languages = new HashMap<>();
     }
 
-    public User(String id, boolean mentor, String name, String age, String gender, String biography, String phone, String email, String facebook) {
+    public User(String id,
+                boolean mentor,
+                String name, String gender,
+                String age,
+                String biography,
+                HashMap<String, String> contactWays,
+                HashMap<String, Boolean> interests,
+                HashMap<String, Boolean> languages) {
         this.id = id;
         this.mentor = mentor;
         this.name = name;
-        this.age = age;
         this.gender = gender;
-
+        this.age = age;
         this.biography = biography;
-
-        this.phone = phone;
-        this.email = email;
-        this.facebook = facebook;
+        this.contactWays = contactWays;
+        this.interests = interests;
+        this.languages = languages;
     }
 
     public String getId() {
@@ -86,11 +97,11 @@ public class User implements Serializable {
         this.biography = biography;
     }
 
-    public Map<String, Boolean> getContactWays() {
+    public Map<String, String> getContactWays() {
         return contactWays;
     }
 
-    public void setContactWays(Map<String, Boolean> contactWays) {
+    public void setContactWays(Map<String, String> contactWays) {
         this.contactWays = contactWays;
     }
 
@@ -108,30 +119,6 @@ public class User implements Serializable {
 
     public void setLanguages(Map<String, Boolean> languages) {
         this.languages = languages;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFacebook() {
-        return facebook;
-    }
-
-    public void setFacebook(String facebook) {
-        this.facebook = facebook;
     }
 
 }

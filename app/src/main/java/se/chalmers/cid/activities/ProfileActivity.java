@@ -22,10 +22,13 @@ import com.google.android.gms.tasks.Task;
 import se.chalmers.cid.R;
 import se.chalmers.cid.adapter.InterestAdapter;
 import se.chalmers.cid.databinding.ActivityProfileBinding;
+import se.chalmers.cid.models.Attributes;
 import se.chalmers.cid.models.User;
 
 public class ProfileActivity extends BaseActivity {
+
     private User user;
+
     @Override
     protected void onUserDataLoaded() {
         setContentView(R.layout.activity_profile);
@@ -40,7 +43,21 @@ public class ProfileActivity extends BaseActivity {
             findViewById(R.id.profileAge).setFocusable(false);
         }
 
-        fixGenderIcon(user);
+        if (user.getGender() != null) {
+            ((ImageView) (findViewById(R.id.sexImg))).setImageResource(Attributes.GENDERS.get(user.getGender()).getImage());
+        }
+
+        if (!user.getContactWays().containsKey("Phone")) {
+            findViewById(R.id.phoneImgButton).setVisibility(View.INVISIBLE);
+        }
+
+        if (!user.getContactWays().containsKey("Email")) {
+            findViewById(R.id.emailImgButton).setVisibility(View.INVISIBLE);
+        }
+
+        if (!user.getContactWays().containsKey("Facebook")) {
+            findViewById(R.id.facebookImgButton).setVisibility(View.INVISIBLE);
+        }
 
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(new InterestAdapter(this, user));
@@ -57,26 +74,6 @@ public class ProfileActivity extends BaseActivity {
             }
         });
         setDynamicHeight(interestGrid);
-    }
-
-    private void fixGenderIcon(User user) {
-        switch (user.getGender()){
-            case "male":
-                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_male);
-                break;
-            case "female":
-                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_female);
-                break;
-            case "neutral":
-                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_neutral);
-                break;
-            case "apache":
-                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_apache);
-                break;
-            default:
-                ((ImageView)(findViewById(R.id.sexImg))).setImageResource(R.drawable.ic_questionmark);
-                break;
-        }
     }
 
     private void setDynamicHeight(GridView gridView) {
@@ -128,23 +125,25 @@ public class ProfileActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void phoneButton(View v){
-        if(!(user.getPhone().isEmpty())){
-            dialPhoneNumber(user.getPhone());
-        } else {
-            Toast.makeText(getApplicationContext(), "This person has no phone number currently...", Toast.LENGTH_SHORT).show();
+    public void phoneButton(View v) {
+        String phoneNumber = user.getContactWays().get("Phone");
+        if (phoneNumber != null) {
+            dialPhoneNumber(phoneNumber);
         }
     }
+
     private void dialPhoneNumber(final String phoneNumber) {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+        finish();
     }
-    public void mailButton(View v){
-        if(!(user.getEmail().isEmpty())){
-            sendEmail(user.getEmail());
-        } else {
-            Toast.makeText(getApplicationContext(), "This person has no phone number currently...", Toast.LENGTH_SHORT).show();
+
+    public void mailButton(View v) {
+        String emailAddress = user.getContactWays().get("Email");
+        if (emailAddress != null) {
+            sendEmail(emailAddress);
         }
     }
+
     protected void sendEmail(String mail) {
         Log.i("Send email", "");
 
@@ -166,19 +165,16 @@ public class ProfileActivity extends BaseActivity {
             Toast.makeText(getApplicationContext(), "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
-    public void facebookButton(View v){
-        if(!(user.getFacebook().isEmpty())){
-            fixUrl(user.getFacebook());
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(fixUrl(mUser.getFacebook()))));
-        } else {
-            Toast.makeText(getApplicationContext(), "This person has no Facebook currently...", Toast.LENGTH_SHORT).show();
+
+    public void facebookButton(View v) {
+        String facebookUsername = user.getContactWays().get("Facebook");
+        if (facebookUsername != null) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(fixUrl(facebookUsername))));
         }
-
-
     }
 
-    private String fixUrl(String url){
-        if(url.contains("com/")){
+    private String fixUrl(String url) {
+        if (url.contains("com/")) {
             url = url.substring(url.lastIndexOf("com/") + 4);
         }
         url = "https://m.facebook.com/" + url;

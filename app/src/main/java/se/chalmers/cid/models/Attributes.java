@@ -7,11 +7,26 @@ import se.chalmers.cid.R;
 public class Attributes {
 
     public static final ArrayMap<String, Attribute> CONTACT_WAYS = generateContactWays();
+    public static final ArrayMap<String, Attribute> GENDERS = generateGenders();
     public static final ArrayMap<String, Attribute> INTERESTS = generateInterests();
     public static final ArrayMap<String, Attribute> LANGUAGES = generateLanguages();
 
     private static ArrayMap<String, Attribute> generateContactWays() {
-        return new ArrayMap<>();
+        Attribute[] contactWays = {
+                new Attribute("Phone", R.drawable.ic_phone),
+                new Attribute("Mail", R.drawable.ic_mail),
+                new Attribute("Facebook", R.drawable.ic_facebook)
+        };
+        return generateMap(contactWays);
+    }
+
+    private static ArrayMap<String, Attribute> generateGenders() {
+        Attribute[] genders = {
+                new Attribute("Male", R.drawable.ic_male),
+                new Attribute("Female", R.drawable.ic_female),
+                new Attribute("Neutral", R.drawable.ic_neutral)
+        };
+        return generateMap(genders);
     }
 
     private static ArrayMap<String, Attribute> generateInterests() {
@@ -39,14 +54,7 @@ public class Attributes {
                 new Attribute("Working out", R.drawable.ic_interests_working_out),
                 new Attribute("Theater", R.drawable.ic_interests_theater)
         };
-
-        ArrayMap<String, Attribute> interestMap = new ArrayMap<>();
-
-        for (Attribute interest : interests) {
-            interestMap.put(interest.getName(), interest);
-        }
-
-        return interestMap;
+        return generateMap(interests);
     }
 
     private static ArrayMap<String, Attribute> generateLanguages() {
@@ -67,14 +75,15 @@ public class Attributes {
                 new Attribute("Eritrea", R.drawable.ic_language_eritrea),
                 new Attribute("Iraq", R.drawable.ic_language_iraq)
         };
+        return generateMap(languages);
+    }
 
-        ArrayMap<String, Attribute> languageMap = new ArrayMap<>();
-
-        for (Attribute language : languages) {
-            languageMap.put(language.getName(), language);
+    private static ArrayMap<String, Attribute> generateMap(Attribute[] attributes) {
+        ArrayMap<String, Attribute> attributeMap = new ArrayMap<>();
+        for (Attribute attribute : attributes) {
+            attributeMap.put(attribute.getName(), attribute);
         }
-
-        return languageMap;
+        return attributeMap;
     }
 
 }
