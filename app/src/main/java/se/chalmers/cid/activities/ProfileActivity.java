@@ -3,7 +3,9 @@ package se.chalmers.cid.activities;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +28,16 @@ import se.chalmers.cid.models.User;
 
 public class ProfileActivity extends BaseActivity {
     private User user;
+
+
+    @Override
+    protected  void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
     @Override
     protected void onUserDataLoaded() {
         setContentView(R.layout.activity_profile);
@@ -33,6 +45,9 @@ public class ProfileActivity extends BaseActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         binding.setUser(user);
+
+
+
 
         if (!mUser.getId().equals(user.getId())) {
             findViewById(R.id.profileName).setFocusable(false);
@@ -108,24 +123,30 @@ public class ProfileActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_logout) {
-            AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                            finish();
-                        }
-                    });
-        }
-        if (item.getItemId() == R.id.action_mentorlist) {
 
-            Intent intent = new Intent(this, MentorListActivity.class);
-            startActivity(intent);
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        });
+                return true;
+            case android.R.id.home:
+                
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
         }
-        return super.onOptionsItemSelected(item);
+
     }
 
     public void phoneButton(View v){
