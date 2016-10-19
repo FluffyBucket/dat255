@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_first_time_setup_basics"
     android:layout_width="match_parent"
@@ -9,19 +8,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="se.chalmers.cid.activities.FirstTimeSetupBasicsActivity">
-
+    tools:context="se.chalmers.cid.activities.FirstTimeSetupContactWaysActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:orientation="vertical">>
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@+id/basics_page_number">
             android:stretchColumns="1"
 
@@ -30,23 +28,23 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_person"
+                    android:layout_column="0"
+                    android:background="@drawable/ic_phone"
                     android:minHeight="48dp"
                     android:minWidth="48dp" />
 
                 <EditText
-                    android:id="@+id/basicsNameEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/basicsPhoneEditText"
+                    android:layout_column="1"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Name"
-                    android:inputType="textPersonName" />
-                <!--android:text="@{user.name}"-->
+                    android:hint="07XX XXXXXX"
+                    android:inputType="phone" />
+                <!--android:text="@{user.phone}"-->
             </TableRow>
 
             <TableRow
@@ -54,75 +52,54 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_age"
+                    android:layout_column="0"
+                    android:background="@drawable/ic_mail"
                     android:minHeight="48dp"
-
-
                     android:minWidth="48dp" />
 
                 <EditText
-                    android:id="@+id/basicsAgeEditText"
-                    android:layout_width="match_parent"
+                    android:id="@+id/basicsEmailEditText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_column="1"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Year of birth"
-                    android:inputType="number" />
-                <!--android:text="@{user.age}"-->
+                    android:hint="name@email.com"
+                    android:inputType="textEmailAddress" />
+                <!--android:text="@{user.email}"-->
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:background="@drawable/ic_facebook"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp" />
+
+                <EditText
+                    android:id="@+id/basicsFacebookEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="username"
+                    android:inputType="textUri" />
+                <!--android:text="@{user.facebook}"-->
             </TableRow>
 
         </TableLayout>
-
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/basicsGenderMaleButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:alpha="0.5"
-                android:clickable="true"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:onClick="setGender"
-                app:srcCompat="@drawable/ic_male" />
-
-            <ImageView
-                android:id="@+id/basicsGenderFemaleButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:alpha="0.5"
-                android:clickable="true"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:onClick="setGender"
-                app:srcCompat="@drawable/ic_female" />
-
-            <ImageView
-                android:id="@+id/basicsGenderNeutralButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:alpha="0.5"
-                android:clickable="true"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:onClick="setGender"
-                app:srcCompat="@drawable/ic_neutral" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
     <TextView
@@ -132,7 +109,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:padding="16dp"
-        android:text="2/5" />
+        android:text="3/5" />
 
     <Button
         android:id="@+id/role_button_next"

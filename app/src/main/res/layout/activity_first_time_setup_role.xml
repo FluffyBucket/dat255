@@ -5,49 +5,43 @@
     android:background="#FFF"
     tools:context="se.chalmers.cid.activities.FirstTimeSetupRoleActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
 
         <Button
-            android:text="Mentor"
+            android:id="@+id/role_button_mentor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/role_button_mentor"
-            android:onClick="nextActivityMentor"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="192dp" />
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="192dp"
+            android:onClick="nextActivityMentor"
+            android:text="Mentor" />
 
         <Button
-            android:text="Newly Arrived"
-            android:layout_height="wrap_content"
             android:id="@+id/role_button_refugee"
             android:layout_width="match_parent"
-            android:onClick="nextActivityRefugee"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/role_button_mentor"
-            android:layout_alignParentStart="true" />
+            android:onClick="nextActivityRefugee"
+            android:text="Newly Arrived" />
 
         <TextView
-            android:text="1/4"
+            android:id="@+id/role_page_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/role_page_number"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:text="1/5" />
 
         <Button
+            android:id="@+id/role_button_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/role_button_next"
             android:layout_alignBaseline="@+id/role_page_number"
             android:layout_alignBottom="@+id/role_page_number"
             android:layout_alignParentEnd="true"
@@ -55,13 +49,13 @@
             android:minWidth="48dip" />
 
         <Button
+            android:id="@+id/role_button_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/role_button_cancel"
-            android:background="@drawable/ic_cancel"
             android:layout_alignBaseline="@+id/role_page_number"
             android:layout_alignBottom="@+id/role_page_number"
             android:layout_alignParentStart="true"
+            android:background="@drawable/ic_cancel"
             android:minWidth="48dip" />
     </RelativeLayout>
 
