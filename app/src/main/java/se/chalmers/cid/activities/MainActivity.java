@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity {
         saveUser();
         if (mUser.isMentor()) {
             // Show profile activity
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(MainActivity.this, MainNavigationActivity.class);
             intent.putExtra("user", mUser);
             startActivity(intent);
             finish();

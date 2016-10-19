@@ -114,7 +114,7 @@ public class MainNavigationActivity extends BaseActivity
                 startActivity(intent);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(MainNavigationActivity.this,"SETTINGS",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainNavigationActivity.this,SettingsActivity.class));
                 break;
             case R.id.nav_logout:
                 AuthUI.getInstance()
