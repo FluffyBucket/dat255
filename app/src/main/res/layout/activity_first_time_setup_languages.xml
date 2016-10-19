@@ -12,69 +12,66 @@
     tools:context="se.chalmers.cid.activities.FirstTimeSetupLanguagesActivity">
 
 
+    <ImageView
+        android:id="@+id/lang_icon_speech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0"
 
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_speech_head"
-            android:adjustViewBounds="true"
-            android:layout_alignParentTop="true"
-
-            android:id="@+id/lang_icon_speech"
-            android:layout_weight="0" />
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ic_speech_head" />
 
 
     <GridView
+        android:id="@+id/languageList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/languageList"
-        android:stretchMode="columnWidth"
-        android:numColumns="auto_fit"
-        android:columnWidth="64dp"
         android:layout_above="@+id/lang_page_number"
         android:layout_below="@id/lang_icon_speech"
-        />
+        android:columnWidth="64dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth" />
 
     <TextView
-        android:text="3/4"
+        android:id="@+id/lang_page_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/lang_page_number"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:text="4/5" />
 
     <Button
+        android:id="@+id/role_button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/role_button_next"
         android:layout_alignBaseline="@+id/lang_page_number"
         android:layout_alignBottom="@+id/lang_page_number"
         android:layout_alignParentEnd="true"
         android:background="@drawable/ic_arrow_right"
         android:minWidth="48dip"
-        android:onClick="nextActivity"/>
+        android:onClick="nextActivity" />
 
     <Button
+        android:id="@+id/role_button_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/role_button_cancel"
-        android:background="@drawable/ic_arrow_left"
-        android:minWidth="48dip"
         android:layout_alignBaseline="@+id/lang_page_number"
         android:layout_alignBottom="@+id/lang_page_number"
         android:layout_alignParentStart="true"
-        android:onClick="previousActivity"/>
+        android:background="@drawable/ic_arrow_left"
+        android:minWidth="48dip"
+        android:onClick="previousActivity" />
 
     <TextView
-        android:text="@string/spoken_lang"
+        android:id="@+id/lang_text_speech"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lang_text_speech"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/lang_icon_speech"
-        android:layout_marginTop="8dp"/>
+        android:text="@string/spoken_lang" />
 
 
 </RelativeLayout>

@@ -1,19 +1,12 @@
 package se.chalmers.cid.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,21 +15,24 @@ import se.chalmers.cid.R;
 import se.chalmers.cid.adapter.InterestAdapter;
 import se.chalmers.cid.models.User;
 
-public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
+public class FirstTimeSetupInterestsActivity extends BaseActivity {
 
-    private User mUser;
+    private User mNewUser;
     private HashSet<String> mInterestNames = new HashSet<>();
     private InterestAdapter mAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onUserDataLoaded() {
+    }
+
+    @Override
+    protected void onUserDataDoesNotExist() {
         setContentView(R.layout.activity_first_time_setup_interests);
 
         Intent intent = getIntent();
-        mUser = (User) intent.getSerializableExtra("user");
+        mNewUser = (User) intent.getSerializableExtra("user");
 
-        mAdapter = new InterestAdapter(this, mUser);
+        mAdapter = new InterestAdapter(this, mNewUser);
 
         GridView interestGrid = (GridView) findViewById(R.id.interestList);
         interestGrid.setAdapter(mAdapter);
@@ -58,42 +54,6 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
         setDynamicHeight(interestGrid);
     }
 
-    public void nextActivity(View v) {
-        HashMap<String, Boolean> interests = new HashMap<>();
-        for (String interestName : mInterestNames) {
-            interests.put(interestName, true);
-        }
-        mUser.setInterests(interests);
-
-        saveUser(mUser);
-
-        if (mUser.isMentor()) {
-            Intent intent = new Intent(this, ProfileActivity.class);
-            intent.putExtra("user", mUser);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        } else {
-            Intent intent = new Intent(this, MentorListActivity.class);
-            intent.putExtra("user", mUser);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-    public void previousActivity(View v){
-        Intent intent = new Intent(FirstTimeSetupInterestsActivity.this,FirstTimeSetupLanguagesActivity.class);
-        intent.putExtra("user",mUser);
-        startActivity(intent);
-        finish();
-    }
-
-    private void saveUser(User user) {
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-        usersRef.child(firebaseUser.getUid()).setValue(user);
-    }
-
     private void setDynamicHeight(GridView gridView) {
         ListAdapter gridViewAdapter = gridView.getAdapter();
         if (gridViewAdapter == null) {
@@ -107,7 +67,7 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
 
         int items = gridViewAdapter.getCount();
 
-        if( items > 5 ){
+        if (items > 5) {
             float x = items / 5;
             int rows = (int) (x + 1);
             totalHeight *= rows;
@@ -117,6 +77,38 @@ public class FirstTimeSetupInterestsActivity extends AppCompatActivity {
         params.height = totalHeight;
         gridView.setLayoutParams(params);
     }
+
+    public void nextActivity(View v) {
+        HashMap<String, Boolean> interests = new HashMap<>();
+        for (String interestName : mInterestNames) {
+            interests.put(interestName, true);
+        }
+        mNewUser.setInterests(interests);
+
+        mDatabaseReference.child(mFirebaseUser.getUid()).setValue(mNewUser);
+
+        if (mNewUser.isMentor()) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            intent.putExtra("user", mNewUser);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(this, MainNavigationActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+            finish();
+        }
+    }
+
+    public void previousActivity(View v) {
+        Intent intent = new Intent(FirstTimeSetupInterestsActivity.this, FirstTimeSetupLanguagesActivity.class);
+        intent.putExtra("user", mNewUser);
+        startActivity(intent);
+        finish();
+    }
+
 
     @Override
     public void onBackPressed() {

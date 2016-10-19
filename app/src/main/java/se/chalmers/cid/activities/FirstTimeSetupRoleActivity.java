@@ -1,42 +1,40 @@
 package se.chalmers.cid.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import se.chalmers.cid.R;
 import se.chalmers.cid.models.User;
 
-public class FirstTimeSetupRoleActivity extends AppCompatActivity {
+public class FirstTimeSetupRoleActivity extends BaseActivity {
 
-    private User mUser;
+    private User mNewUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mUser = new User();
-        mUser.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    protected void onUserDataLoaded() {
+    }
+
+    @Override
+    protected void onUserDataDoesNotExist() {
         setContentView(R.layout.activity_first_time_setup_role);
+        mNewUser = new User();
+        mNewUser.setId(mFirebaseUser.getUid());
     }
 
-    public void nextActivityRefugee(View v){
+    public void nextActivityRefugee(View v) {
         Intent intent = new Intent(this, FirstTimeSetupBasicsActivity.class);
-        mUser.setMentor(false);
-        intent.putExtra("user", mUser);
+        mNewUser.setMentor(false);
+        intent.putExtra("user", mNewUser);
         startActivity(intent);
         finish();
     }
 
-    public void nextActivityMentor(View v){
+    public void nextActivityMentor(View v) {
         Intent intent = new Intent(this, FirstTimeSetupBasicsActivity.class);
-        mUser.setMentor(true);
-        intent.putExtra("user", mUser);
+        mNewUser.setMentor(true);
+        intent.putExtra("user", mNewUser);
         startActivity(intent);
         finish();
     }
-
 
 }

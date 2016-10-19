@@ -7,11 +7,26 @@ import se.chalmers.cid.R;
 public class Attributes {
 
     public static final ArrayMap<String, Attribute> CONTACT_WAYS = generateContactWays();
+    public static final ArrayMap<String, Attribute> GENDERS = generateGenders();
     public static final ArrayMap<String, Attribute> INTERESTS = generateInterests();
     public static final ArrayMap<String, Attribute> LANGUAGES = generateLanguages();
 
     private static ArrayMap<String, Attribute> generateContactWays() {
-        return new ArrayMap<>();
+        Attribute[] contactWays = {
+                new Attribute("Phone", R.drawable.ic_phone),
+                new Attribute("Mail", R.drawable.ic_mail),
+                new Attribute("Facebook", R.drawable.ic_facebook)
+        };
+        return generateMap(contactWays);
+    }
+
+    private static ArrayMap<String, Attribute> generateGenders() {
+        Attribute[] genders = {
+                new Attribute("Male", R.drawable.ic_male),
+                new Attribute("Female", R.drawable.ic_female),
+                new Attribute("Neutral", R.drawable.ic_neutral)
+        };
+        return generateMap(genders);
     }
 
     private static ArrayMap<String, Attribute> generateInterests() {
@@ -21,16 +36,25 @@ public class Attributes {
                 new Attribute("Music", R.drawable.ic_interests_music),
                 new Attribute("Movie", R.drawable.ic_interests_movie),
                 new Attribute("Videogames", R.drawable.ic_interests_videogames),
-                new Attribute("Reading", R.drawable.ic_interests_reading)
+                new Attribute("Reading", R.drawable.ic_interests_reading),
+                new Attribute("Baseball", R.drawable.ic_interests_baseball),
+                new Attribute("Bowling", R.drawable.ic_interests_bowling),
+                new Attribute("Chess", R.drawable.ic_interests_chess),
+                new Attribute("Cooking", R.drawable.ic_interests_cooking),
+                new Attribute("Golf", R.drawable.ic_interests_golf),
+                new Attribute("Horse-riding", R.drawable.ic_interests_horse_riding),
+                new Attribute("Karate", R.drawable.ic_interests_karate),
+                new Attribute("Listening music", R.drawable.ic_interests_listening_music),
+                new Attribute("Painting", R.drawable.ic_interests_painting),
+                new Attribute("Playing piano", R.drawable.ic_interests_playing_piano),
+                new Attribute("Playing guitar", R.drawable.ic_interests_playing_guitar),
+                new Attribute("Pool", R.drawable.ic_interests_pool),
+                new Attribute("Table tennis", R.drawable.ic_interests_table_tennis),
+                new Attribute("Tennis", R.drawable.ic_interests_tennis_ball),
+                new Attribute("Working out", R.drawable.ic_interests_working_out),
+                new Attribute("Theater", R.drawable.ic_interests_theater)
         };
-
-        ArrayMap<String, Attribute> interestMap = new ArrayMap<>();
-
-        for (Attribute interest : interests) {
-            interestMap.put(interest.getName(), interest);
-        }
-
-        return interestMap;
+        return generateMap(interests);
     }
 
     private static ArrayMap<String, Attribute> generateLanguages() {
@@ -39,16 +63,27 @@ public class Attributes {
                 new Attribute("English", R.drawable.ic_language_english),
                 new Attribute("Afghanistan", R.drawable.ic_language_afghanistan),
                 new Attribute("Iran", R.drawable.ic_language_iran),
-                new Attribute("Spanish", R.drawable.ic_language_spanish)
+                new Attribute("Spanish", R.drawable.ic_language_spanish),
+                new Attribute("Danish", R.drawable.ic_language_denmark),
+                new Attribute("Norwegian", R.drawable.ic_language_norway),
+                new Attribute("Icelandic", R.drawable.ic_language_iceland),
+                new Attribute("Finnish", R.drawable.ic_language_finland),
+                new Attribute("German", R.drawable.ic_language_german),
+                new Attribute("French", R.drawable.ic_language_france),
+                new Attribute("Syria", R.drawable.ic_language_syria),
+                new Attribute("Somalia", R.drawable.ic_language_somalia),
+                new Attribute("Eritrea", R.drawable.ic_language_eritrea),
+                new Attribute("Iraq", R.drawable.ic_language_iraq)
         };
+        return generateMap(languages);
+    }
 
-        ArrayMap<String, Attribute> languageMap = new ArrayMap<>();
-
-        for (Attribute language : languages) {
-            languageMap.put(language.getName(), language);
+    private static ArrayMap<String, Attribute> generateMap(Attribute[] attributes) {
+        ArrayMap<String, Attribute> attributeMap = new ArrayMap<>();
+        for (Attribute attribute : attributes) {
+            attributeMap.put(attribute.getName(), attribute);
         }
-
-        return languageMap;
+        return attributeMap;
     }
 
 }

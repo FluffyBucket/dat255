@@ -12,44 +12,12 @@
     tools:context="se.chalmers.cid.activities.FirstTimeSetupBasicsActivity">
 
 
-    <TextView
-        android:text="2/4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/basics_page_number"
-        android:padding="16dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/role_button_next"
-        android:layout_alignBaseline="@+id/basics_page_number"
-        android:layout_alignBottom="@+id/basics_page_number"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_arrow_right"
-        android:minWidth="48dip"
-        android:onClick="nextActivity"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/role_button_cancel"
-        android:background="@drawable/ic_arrow_left"
-        android:minWidth="48dip"
-        android:layout_alignBaseline="@+id/basics_page_number"
-        android:layout_alignBottom="@+id/basics_page_number"
-        android:layout_alignParentStart="true"
-        android:onClick="previousActivity"/>
-
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:orientation="vertical">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -59,188 +27,133 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView"
-                    android:minWidth="48dp"
+                    android:background="@drawable/ic_person"
                     android:minHeight="48dp"
-                    android:background="@drawable/ic_person" />
+                    android:minWidth="48dp" />
 
                 <EditText
+                    android:id="@+id/basicsNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/basicsNameEditText"
-                    android:hint="Name/Nickname"
                     android:layout_gravity="center"
-                    android:layout_weight="1"/>
-                    <!--android:text="@{user.name}"-->
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName" />
+                <!--android:text="@{user.name}"-->
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView3"
-                    android:minWidth="48dp"
+                    android:background="@drawable/ic_age"
                     android:minHeight="48dp"
 
 
-                    android:background="@drawable/ic_age" />
+                    android:minWidth="48dp" />
 
                 <EditText
+                    android:id="@+id/basicsAgeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:hint="Year of birth"
-                    android:id="@+id/basicsAgeEditText"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"/>
-                    <!--android:text="@{user.age}"-->
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView2"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:background="@drawable/ic_phone"
-                    android:layout_column="0" />
-
-                <EditText
-                    android:ems="10"
-                    android:inputType="phone"
-                    android:id="@+id/basicsPhoneEditText"
-                    android:hint="07XX XXXXXX"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_column="1"/>
-                    <!--android:text="@{user.phone}"-->
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView4"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:background="@drawable/ic_mail"
-                    android:layout_column="0" />
-
-                <EditText
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:id="@+id/basicsEmailEditText"
-                    android:hint="Name@Domain.xxx"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                    <!--android:text="@{user.email}"-->
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView5"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:background="@drawable/ic_facebook"
-                    android:layout_column="0" />
-
-                <EditText
-                    android:inputType="textUri"
-                    android:ems="10"
-                    android:id="@+id/basicsFacebookEditText"
-                    android:hint="Facebook.com/Username"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_column="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                    <!--android:text="@{user.facebook}"-->
+                    android:inputType="number" />
+                <!--android:text="@{user.age}"-->
             </TableRow>
 
         </TableLayout>
+
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageView
-                android:onClick="genderButtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_male"
                 android:id="@+id/basicsGenderMaleButton"
-                android:layout_weight="1"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                android:alpha="0.5" />
-
-            <ImageView
-                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_female"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="0.5"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:onClick="setGender"
+                app:srcCompat="@drawable/ic_male" />
+
+            <ImageView
                 android:id="@+id/basicsGenderFemaleButton"
-                android:layout_weight="1"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                android:alpha="0.5" />
-
-            <ImageView
-                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_neutral"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="0.5"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:onClick="setGender"
+                app:srcCompat="@drawable/ic_female" />
+
+            <ImageView
                 android:id="@+id/basicsGenderNeutralButton"
-                android:layout_weight="1"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                android:alpha="0.5" />
-
-            <ImageView
-                android:onClick="genderButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_apache"
-                android:id="@+id/basicsGenderApacheButton"
                 android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="0.5"
+                android:clickable="true"
                 android:minHeight="48dp"
                 android:minWidth="48dp"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                android:alpha="0.5" />
+                android:onClick="setGender"
+                app:srcCompat="@drawable/ic_neutral" />
+
         </LinearLayout>
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/basics_page_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
+        android:text="2/5" />
+
+    <Button
+        android:id="@+id/role_button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/basics_page_number"
+        android:layout_alignBottom="@+id/basics_page_number"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_arrow_right"
+        android:minWidth="48dip"
+        android:onClick="nextActivity" />
+
+    <Button
+        android:id="@+id/role_button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/basics_page_number"
+        android:layout_alignBottom="@+id/basics_page_number"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/ic_arrow_left"
+        android:minWidth="48dip"
+        android:onClick="previousActivity" />
 
 </RelativeLayout>
