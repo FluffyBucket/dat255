@@ -23,6 +23,31 @@ public class FirstTimeSetupLanguagesActivity extends BaseActivity {
 
     @Override
     protected void onUserDataLoaded() {
+        setContentView(R.layout.activity_first_time_setup_languages);
+
+        Intent intent = getIntent();
+        mNewUser = (User) intent.getSerializableExtra("user");
+
+        mAdapter = new LanguageAdapter(this, mNewUser);
+
+        GridView languageGrid = (GridView) findViewById(R.id.languageList);
+        languageGrid.setAdapter(mAdapter);
+        languageGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ImageView img = (ImageView) view;
+                String languageName = mAdapter.getItem(position);
+                if (mLanguageNames.contains(languageName)) {
+                    mLanguageNames.remove(languageName);
+                    img.setImageAlpha(70);
+                } else {
+                    mLanguageNames.add(languageName);
+                    img.setImageAlpha(255);
+                }
+            }
+        });
+
+        setDynamicHeight(languageGrid);
     }
 
     @Override

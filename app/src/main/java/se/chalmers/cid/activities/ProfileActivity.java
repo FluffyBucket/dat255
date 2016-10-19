@@ -113,25 +113,16 @@ public class ProfileActivity extends BaseActivity {
         gridView.setLayoutParams(params);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_logout:
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                                finish();
-                            }
-                        });
+            case R.id.action_edit:
+                Intent intent = new Intent(ProfileActivity.this, FirstTimeSetupRoleActivity.class);
+                intent.putExtra("users",mUser);
+                startActivity(intent);
+                finish();
                 return true;
             case android.R.id.home:
                 

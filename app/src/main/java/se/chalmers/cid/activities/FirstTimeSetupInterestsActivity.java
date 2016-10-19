@@ -23,6 +23,31 @@ public class FirstTimeSetupInterestsActivity extends BaseActivity {
 
     @Override
     protected void onUserDataLoaded() {
+        setContentView(R.layout.activity_first_time_setup_interests);
+
+        Intent intent = getIntent();
+        mNewUser = (User) intent.getSerializableExtra("user");
+
+        mAdapter = new InterestAdapter(this, mNewUser);
+
+        GridView interestGrid = (GridView) findViewById(R.id.interestList);
+        interestGrid.setAdapter(mAdapter);
+        interestGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ImageView img = (ImageView) view;
+                String interestName = mAdapter.getItem(position);
+                if (mInterestNames.contains(interestName)) {
+                    mInterestNames.remove(interestName);
+                    img.setImageAlpha(70);
+                } else {
+                    mInterestNames.add(interestName);
+                    img.setImageAlpha(255);
+                }
+            }
+        });
+
+        setDynamicHeight(interestGrid);
     }
 
     @Override

@@ -55,20 +55,7 @@ public class MentorListActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_logout) {
-            AuthUI.getInstance()
-              .signOut(this)
-              .addOnCompleteListener(new OnCompleteListener<Void>() {
-                  @Override
-                  public void onComplete(@NonNull Task<Void> task) {
-                      startActivity(new Intent(MentorListActivity.this, MainActivity.class));
-                      finish();
-                  }
-              });
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     @Override
     protected void onDestroy() {

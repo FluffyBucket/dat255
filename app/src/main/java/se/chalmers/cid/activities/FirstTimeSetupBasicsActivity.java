@@ -16,6 +16,15 @@ public class FirstTimeSetupBasicsActivity extends BaseActivity {
 
     @Override
     protected void onUserDataLoaded() {
+        setContentView(R.layout.activity_first_time_setup_basics);
+
+        Intent intent = getIntent();
+        mNewUser = (User) intent.getSerializableExtra("user");
+
+        mNameTextView = (EditText) findViewById(R.id.basicsNameEditText);
+        mAgeTextView = (EditText) findViewById(R.id.basicsAgeEditText);
+
+        mNameTextView.setText(mFirebaseUser.getDisplayName());
     }
 
     @Override

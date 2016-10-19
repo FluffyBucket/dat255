@@ -51,9 +51,6 @@ public class MainNavigationActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -127,6 +124,12 @@ public class MainNavigationActivity extends BaseActivity
                             }
                         });
                 break;
+            case R.id.nav_new_user:
+                Intent newIntent = new Intent(MainNavigationActivity.this,FirstTimeSetupRoleActivity.class);
+                newIntent.putExtra("user",mUser);
+                startActivity(newIntent);
+                finish();
+                break;
         }
 
 
@@ -145,6 +148,13 @@ public class MainNavigationActivity extends BaseActivity
                 ((TextView) view.findViewById(android.R.id.text1)).setText(user.getName());
             }
         };
+
+        TextView name = (TextView) findViewById(R.id.nav_name);
+        name.setText(mFirebaseUser.getDisplayName());
+        TextView email = (TextView) findViewById(R.id.nav_email);
+        email.setText(mFirebaseUser.getEmail());
+
+
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

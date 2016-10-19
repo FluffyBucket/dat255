@@ -127,7 +127,7 @@ public abstract class MentorListAdapter extends BaseAdapter {
     }
 
     private boolean validateUser(User user) {
-        if (!user.isMentor()) {
+        if (!user.isMentor() || user.getId().equals(mUser.getId())) {
             return false;
         }
 

@@ -18,6 +18,16 @@ public class FirstTimeSetupContactWaysActivity extends BaseActivity {
 
     @Override
     protected void onUserDataLoaded() {
+        setContentView(R.layout.activity_first_time_setup_contact_ways);
+
+        Intent intent = getIntent();
+        mNewUser = (User) intent.getSerializableExtra("user");
+
+        mPhoneEditText = (EditText) findViewById(R.id.basicsPhoneEditText);
+        mEmailEditText = (EditText) findViewById(R.id.basicsEmailEditText);
+        mFacebookEditText = (EditText) findViewById(R.id.basicsFacebookEditText);
+
+        mEmailEditText.setText(mFirebaseUser.getEmail());
     }
 
     @Override
