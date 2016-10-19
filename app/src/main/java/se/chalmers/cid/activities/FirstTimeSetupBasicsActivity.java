@@ -1,8 +1,6 @@
 package se.chalmers.cid.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,54 +8,69 @@ import android.widget.ImageView;
 import se.chalmers.cid.R;
 import se.chalmers.cid.models.User;
 
-public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
+public class FirstTimeSetupBasicsActivity extends BaseActivity {
 
-    private User mUser;
+    private User mNewUser;
+    private EditText mNameTextView;
+    private EditText mAgeTextView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onUserDataLoaded() {
+    }
+
+    @Override
+    protected void onUserDataDoesNotExist() {
         setContentView(R.layout.activity_first_time_setup_basics);
+
         Intent intent = getIntent();
-        mUser = (User) intent.getSerializableExtra("user");
+        mNewUser = (User) intent.getSerializableExtra("user");
+
+        mNameTextView = (EditText) findViewById(R.id.basicsNameEditText);
+        mAgeTextView = (EditText) findViewById(R.id.basicsAgeEditText);
+
+        mNameTextView.setText(mFirebaseUser.getDisplayName());
     }
 
-    private void updateUser(){
-        EditText nameEditText = (EditText) findViewById(R.id.basicsNameEditText);
-        String name = nameEditText.getText().toString();
-        mUser.setName(name);
-        mUser.setAge(((EditText) findViewById(R.id.basicsAgeEditText)).getText().toString());
-        mUser.setFacebook(((EditText) findViewById(R.id.basicsFacebookEditText)).getText().toString());
-        mUser.setPhone(((EditText) findViewById(R.id.basicsPhoneEditText)).getText().toString());
-        mUser.setEmail(((EditText) findViewById(R.id.basicsEmailEditText)).getText().toString());
-        //mUser.setPrefContactWay(((EditText) findViewById(R.id.basicsContactEditText)).getText().toString());
+    public void setGender(View v) {
+        ImageView maleImage = (ImageView) findViewById(R.id.basicsGenderMaleButton);
+        ImageView femaleImage = (ImageView) findViewById(R.id.basicsGenderFemaleButton);
+        ImageView neutralImage = (ImageView) findViewById(R.id.basicsGenderNeutralButton);
+
+        int fade = 128;
+        int highlight = 255;
+
+        maleImage.setImageAlpha(fade);
+        femaleImage.setImageAlpha(fade);
+        neutralImage.setImageAlpha(fade);
+
+        maleImage.setTag("Male");
+        femaleImage.setTag("Female");
+        neutralImage.setTag("Neutral");
+
+        ImageView selectedImage = (ImageView) v;
+
+        selectedImage.setImageAlpha(highlight);
+
+        mNewUser.setGender((String) selectedImage.getTag());
     }
 
-    public void genderButtons(View v){
-        ((ImageView)findViewById(R.id.basicsGenderApacheButton)).setImageAlpha(128);
-        ((ImageView)findViewById(R.id.basicsGenderMaleButton)).setImageAlpha(128);
-        ((ImageView)findViewById(R.id.basicsGenderFemaleButton)).setImageAlpha(128);
-        ((ImageView)findViewById(R.id.basicsGenderNeutralButton)).setImageAlpha(128);
-        ((ImageView)findViewById(R.id.basicsGenderApacheButton)).setTag("apache");
-        ((ImageView)findViewById(R.id.basicsGenderMaleButton)).setTag("male");
-        ((ImageView)findViewById(R.id.basicsGenderFemaleButton)).setTag("female");
-        ((ImageView)findViewById(R.id.basicsGenderNeutralButton)).setTag("neutral");
-        ((ImageView)v).setImageAlpha(255);
-        mUser.setGender((String) v.getTag());
+    private void updateUser() {
+        mNewUser.setName(mNameTextView.getText().toString());
+        mNewUser.setAge(mAgeTextView.getText().toString());
     }
 
-    public void nextActivity(View v){
-        Intent intent = new Intent(this,FirstTimeSetupLanguagesActivity.class);
+    public void nextActivity(View v) {
         updateUser();
-        intent.putExtra("user",mUser);
+        Intent intent = new Intent(this, FirstTimeSetupContactWaysActivity.class);
+        intent.putExtra("user", mNewUser);
         startActivity(intent);
         finish();
     }
 
     public void previousActivity(View v) {
-        Intent intent = new Intent(this,FirstTimeSetupRoleActivity.class);
         updateUser();
-        intent.putExtra("user",mUser);
+        Intent intent = new Intent(this, FirstTimeSetupRoleActivity.class);
+        intent.putExtra("user", mNewUser);
         startActivity(intent);
         finish();
     }
@@ -65,4 +78,5 @@ public class FirstTimeSetupBasicsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
+
 }

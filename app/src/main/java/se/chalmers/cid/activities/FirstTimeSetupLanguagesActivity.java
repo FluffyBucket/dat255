@@ -1,8 +1,6 @@
 package se.chalmers.cid.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,21 +15,24 @@ import se.chalmers.cid.R;
 import se.chalmers.cid.adapter.LanguageAdapter;
 import se.chalmers.cid.models.User;
 
-public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
+public class FirstTimeSetupLanguagesActivity extends BaseActivity {
 
-    private User mUser;
+    private User mNewUser;
     private HashSet<String> mLanguageNames = new HashSet<>();
     private LanguageAdapter mAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onUserDataLoaded() {
+    }
+
+    @Override
+    protected void onUserDataDoesNotExist() {
         setContentView(R.layout.activity_first_time_setup_languages);
 
         Intent intent = getIntent();
-        mUser = (User) intent.getSerializableExtra("user");
+        mNewUser = (User) intent.getSerializableExtra("user");
 
-        mAdapter = new LanguageAdapter(this, mUser);
+        mAdapter = new LanguageAdapter(this, mNewUser);
 
         GridView languageGrid = (GridView) findViewById(R.id.languageList);
         languageGrid.setAdapter(mAdapter);
@@ -53,19 +54,6 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
         setDynamicHeight(languageGrid);
     }
 
-    public void nextActivity(View v){
-        HashMap<String, Boolean> languages = new HashMap<>();
-        for (String languageName : mLanguageNames) {
-            languages.put(languageName, true);
-        }
-        mUser.setLanguages(languages);
-
-        Intent intent = new Intent(this,FirstTimeSetupInterestsActivity.class);
-        intent.putExtra("user", mUser);
-        startActivity(intent);
-        finish();
-    }
-
     private void setDynamicHeight(GridView gridView) {
         ListAdapter gridViewAdapter = gridView.getAdapter();
         if (gridViewAdapter == null) {
@@ -79,7 +67,7 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
 
         int items = gridViewAdapter.getCount();
 
-        if( items > 5 ){
+        if (items > 5) {
             float x = items / 5;
             int rows = (int) (x + 1);
             totalHeight *= rows;
@@ -90,11 +78,22 @@ public class FirstTimeSetupLanguagesActivity extends AppCompatActivity {
         gridView.setLayoutParams(params);
     }
 
+    public void nextActivity(View v) {
+        HashMap<String, Boolean> languages = new HashMap<>();
+        for (String languageName : mLanguageNames) {
+            languages.put(languageName, true);
+        }
+        mNewUser.setLanguages(languages);
+
+        Intent intent = new Intent(this, FirstTimeSetupInterestsActivity.class);
+        intent.putExtra("user", mNewUser);
+        startActivity(intent);
+        finish();
+    }
 
     public void previousActivity(View v) {
-        Intent intent = new Intent(this,FirstTimeSetupBasicsActivity.class);
-        intent.putExtra("user",mUser);
-
+        Intent intent = new Intent(this, FirstTimeSetupBasicsActivity.class);
+        intent.putExtra("user", mNewUser);
         startActivity(intent);
         finish();
     }
