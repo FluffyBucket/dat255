@@ -52,31 +52,7 @@ public class FirstTimeSetupInterestsActivity extends BaseActivity {
 
     @Override
     protected void onUserDataDoesNotExist() {
-        setContentView(R.layout.activity_first_time_setup_interests);
-
-        Intent intent = getIntent();
-        mNewUser = (User) intent.getSerializableExtra("user");
-
-        mAdapter = new InterestAdapter(this, mNewUser);
-
-        GridView interestGrid = (GridView) findViewById(R.id.interestList);
-        interestGrid.setAdapter(mAdapter);
-        interestGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ImageView img = (ImageView) view;
-                String interestName = mAdapter.getItem(position);
-                if (mInterestNames.contains(interestName)) {
-                    mInterestNames.remove(interestName);
-                    img.setImageAlpha(70);
-                } else {
-                    mInterestNames.add(interestName);
-                    img.setImageAlpha(255);
-                }
-            }
-        });
-
-        setDynamicHeight(interestGrid);
+        onUserDataLoaded();
     }
 
     private void setDynamicHeight(GridView gridView) {
@@ -93,8 +69,7 @@ public class FirstTimeSetupInterestsActivity extends BaseActivity {
         int items = gridViewAdapter.getCount();
 
         if (items > 5) {
-            float x = items / 5;
-            int rows = (int) (x + 1);
+            int rows = items / 5 + 1;
             totalHeight *= rows;
         }
 
@@ -106,7 +81,7 @@ public class FirstTimeSetupInterestsActivity extends BaseActivity {
     public void nextActivity(View v) {
         HashMap<String, Boolean> interests = new HashMap<>();
         for (String interestName : mInterestNames) {
-            interests.put(interestName, true);
+            interests.put(interestName, Boolean.TRUE);
         }
         mNewUser.setInterests(interests);
 
@@ -122,7 +97,6 @@ public class FirstTimeSetupInterestsActivity extends BaseActivity {
             Intent intent = new Intent(this, MainNavigationActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-
             finish();
         }
     }

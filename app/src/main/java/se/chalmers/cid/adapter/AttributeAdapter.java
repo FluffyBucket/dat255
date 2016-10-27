@@ -14,12 +14,10 @@ abstract class AttributeAdapter extends BaseAdapter {
 	Context mContext;
 	ArrayMap<String, Attribute> mAttributes;
 
-	AttributeAdapter(Context context, User user) {
+	AttributeAdapter(Context context, ArrayMap<String, Attribute> attributes) {
 		mContext = context;
-		mAttributes = attributesForUser(user);
+		mAttributes = attributes;
 	}
-
-	abstract ArrayMap<String, Attribute> attributesForUser(User user);
 
 	@Override
 	public int getCount() {

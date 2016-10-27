@@ -130,6 +130,7 @@ public class MainNavigationActivity extends BaseActivity
                 startActivity(newIntent);
                 finish();
                 break;
+            default: break;
         }
 
 

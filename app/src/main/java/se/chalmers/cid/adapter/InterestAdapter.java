@@ -15,22 +15,19 @@ import se.chalmers.cid.models.User;
 
 public class InterestAdapter extends AttributeAdapter {
 
-    public InterestAdapter(Context context, User user){
-        super(context, user);
+    public InterestAdapter(Context context, User user) {
+        super(context, attributesForUser(user, context));
     }
 
-    @Override
-    public ArrayMap<String, Attribute> attributesForUser(User user) {
+    private static ArrayMap<String, Attribute> attributesForUser(User user, Context context) {
         ArrayMap<String, Attribute> interests = new ArrayMap<>();
-
-        if (mContext.getClass() == FirstTimeSetupInterestsActivity.class) {
+        if (context.getClass() == FirstTimeSetupInterestsActivity.class) {
             interests = Attributes.INTERESTS;
         } else {
             for (String interestName : user.getInterests().keySet()) {
                 interests.put(interestName, Attributes.INTERESTS.get(interestName));
             }
         }
-
         return interests;
     }
 

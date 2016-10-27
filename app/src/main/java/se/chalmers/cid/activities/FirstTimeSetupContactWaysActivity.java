@@ -32,33 +32,24 @@ public class FirstTimeSetupContactWaysActivity extends BaseActivity {
 
     @Override
     protected void onUserDataDoesNotExist() {
-        setContentView(R.layout.activity_first_time_setup_contact_ways);
-
-        Intent intent = getIntent();
-        mNewUser = (User) intent.getSerializableExtra("user");
-
-        mPhoneEditText = (EditText) findViewById(R.id.basicsPhoneEditText);
-        mEmailEditText = (EditText) findViewById(R.id.basicsEmailEditText);
-        mFacebookEditText = (EditText) findViewById(R.id.basicsFacebookEditText);
-
-        mEmailEditText.setText(mFirebaseUser.getEmail());
+        onUserDataLoaded();
     }
 
     private void updateUser() {
         HashMap<String, String> contactWays = new HashMap<>();
 
         String phoneNumber = mPhoneEditText.getText().toString();
-        if (!phoneNumber.equals("")) {
+        if (!phoneNumber.isEmpty()) {
             contactWays.put("Phone", phoneNumber);
         }
 
         String emailAddress = mEmailEditText.getText().toString();
-        if (!emailAddress.equals("")) {
+        if (!emailAddress.isEmpty()) {
             contactWays.put("Email", emailAddress);
         }
 
         String facebookUsername = mFacebookEditText.getText().toString();
-        if (!facebookUsername.equals("")) {
+        if (!facebookUsername.isEmpty()) {
             contactWays.put("Facebook", facebookUsername);
         }
 

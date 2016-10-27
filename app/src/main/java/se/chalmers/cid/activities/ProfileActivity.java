@@ -103,8 +103,7 @@ public class ProfileActivity extends BaseActivity {
         int items = gridViewAdapter.getCount();
 
         if (items > 5) {
-            float x = items / 5;
-            int rows = (int) (x + 1);
+            int rows = items / 5 + 1;
             totalHeight *= rows;
         }
 
@@ -187,8 +186,7 @@ public class ProfileActivity extends BaseActivity {
         if (url.contains("com/")) {
             url = url.substring(url.lastIndexOf("com/") + 4);
         }
-        url = "https://m.facebook.com/" + url;
-        return url;
+        return "https://m.facebook.com/" + url;
     }
 
 }

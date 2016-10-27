@@ -11,9 +11,8 @@ public class FirstTimeSetupRoleActivity extends BaseActivity {
 
     private User mNewUser;
 
-
     @Override
-    protected  void onCreate(Bundle saved){
+    protected void onCreate(Bundle saved) {
         super.onCreate(saved);
         setContentView(R.layout.activity_first_time_setup_role);
     }

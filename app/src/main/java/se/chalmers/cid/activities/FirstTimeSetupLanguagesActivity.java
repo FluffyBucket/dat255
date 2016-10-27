@@ -28,7 +28,7 @@ public class FirstTimeSetupLanguagesActivity extends BaseActivity {
         Intent intent = getIntent();
         mNewUser = (User) intent.getSerializableExtra("user");
 
-        mAdapter = new LanguageAdapter(this, mNewUser);
+        mAdapter = new LanguageAdapter(this);
 
         GridView languageGrid = (GridView) findViewById(R.id.languageList);
         languageGrid.setAdapter(mAdapter);
@@ -52,31 +52,7 @@ public class FirstTimeSetupLanguagesActivity extends BaseActivity {
 
     @Override
     protected void onUserDataDoesNotExist() {
-        setContentView(R.layout.activity_first_time_setup_languages);
-
-        Intent intent = getIntent();
-        mNewUser = (User) intent.getSerializableExtra("user");
-
-        mAdapter = new LanguageAdapter(this, mNewUser);
-
-        GridView languageGrid = (GridView) findViewById(R.id.languageList);
-        languageGrid.setAdapter(mAdapter);
-        languageGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ImageView img = (ImageView) view;
-                String languageName = mAdapter.getItem(position);
-                if (mLanguageNames.contains(languageName)) {
-                    mLanguageNames.remove(languageName);
-                    img.setImageAlpha(70);
-                } else {
-                    mLanguageNames.add(languageName);
-                    img.setImageAlpha(255);
-                }
-            }
-        });
-
-        setDynamicHeight(languageGrid);
+        onUserDataLoaded();
     }
 
     private void setDynamicHeight(GridView gridView) {
@@ -93,8 +69,7 @@ public class FirstTimeSetupLanguagesActivity extends BaseActivity {
         int items = gridViewAdapter.getCount();
 
         if (items > 5) {
-            float x = items / 5;
-            int rows = (int) (x + 1);
+            int rows = items / 5 + 1;
             totalHeight *= rows;
         }
 
@@ -106,7 +81,7 @@ public class FirstTimeSetupLanguagesActivity extends BaseActivity {
     public void nextActivity(View v) {
         HashMap<String, Boolean> languages = new HashMap<>();
         for (String languageName : mLanguageNames) {
-            languages.put(languageName, true);
+            languages.put(languageName, Boolean.TRUE);
         }
         mNewUser.setLanguages(languages);
 

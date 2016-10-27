@@ -48,6 +48,8 @@ captures/
 .idea/workspace.xml
 .idea/libraries
 .idea/codeStyleSettings.xml
+.idea/findbugs-idea.xml
 
 # Keystore files
 *.jks
+
